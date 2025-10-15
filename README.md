@@ -1,10 +1,10 @@
-# RPG Development Checklist
+# Terriam
 
-This document outlines the key steps for developing the solo-player RPG project based on the current code structure.
+Terriam is a solo-player RPG that revolves decisive actions, random encounters, training, and enticing combat.
 
 ## Core Game Loop
 
-- [ ] Add a main loop in `game()` that repeats until the player quits or dies.  
+- [ ] Add a main loop in `game()` that ends on quit or player death.  
   - Print the current situation each turn.  
   - Prompt for an action (fight, train, explore, quit).  
   - Break cleanly on “quit”.
