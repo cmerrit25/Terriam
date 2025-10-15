@@ -1,14 +1,15 @@
 from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver
+from actions import explore, train, fight
 
 def game():
     # start game and grab player + nemesis names
     start_msg = "Welcome to Terriam, a world of wonder and randomness inspired by the peakness of Terraria!\n"
     print(start_msg)
 
-    player_name = input("Please give me a valid name for your character!")
+    player_name = input("Please give me a valid name for your character!\n")
     player = Player(player_name)
 
-    nemesis_name = input("What do you want your nemesis to be called?")
+    nemesis_name = input("What do you want your nemesis to be called?\n")
     nemesis = Nemesis(nemesis_name)
 
     # spawn enemies
@@ -25,8 +26,19 @@ def game():
     enemies["minibosses"] = minibosses
 
     # prompt the user for an action
-    action_choices = {}
-    action_msg = "Explore? Train? Fight mini-boss? Fight boss?"
-    action = input(action_msg)
-
+    action_choices = {"fight": fight, "explore": explore, "train": train}
+    action_msg = "Explore? Train? Fight mini-boss? Fight boss?\n"
+    user_choice = ""
+    while True:
+        try:
+            user_choice = input(action_msg).lower()
+            if user_choice not in action_choices.keys():
+                raise KeyError
+            break
+        except KeyError:
+            print("Invalid action choice. Please choose either \"fight\", \"explore\", or \"train\".")
+            
+    # call appropriate action function
+    action = action_choices[user_choice]
+    
     return
