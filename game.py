@@ -1,33 +1,18 @@
-from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver, GameState
+from classes import GameState
 from actions import explore, train, fight
+from utils import get_player_nemesis, spawn_enemies
 
 def game():
     # start game and grab player + nemesis names
-    start_msg = "Welcome to Terriam, a world of wonder and randomness inspired by the peakness of Terraria!\n"
-    print(start_msg)
-
-    player_name = input("Please give me a valid name for your character!\n")
-    player = Player(player_name)
-
-    nemesis_name = input("What do you want your nemesis to be called?\n")
-    nemesis = Nemesis(nemesis_name)
+    player, nemesis = get_player_nemesis()
 
     # spawn enemies
-    enemies = {}
+    colosuss, vrolux, sentry, reaver, enemies = spawn_enemies()
 
-    colosuss = Colossus()
-    vrolux = Vrolux()
-    bosses = [colosuss, vrolux]
-    enemies["bosses"] = bosses
-
-    sentry = Sentry()
-    reaver = Reaver()
-    minibosses = [sentry, reaver]
-    enemies["minibosses"] = minibosses
     # declare game state
     game_state = GameState(player, nemesis, colosuss, vrolux, sentry, reaver)
 
-    # game loop 
+    # Game Loop
     # prompt the user for an action
     while True:
         action_choices = {"fight": fight(game_state), "explore": explore(game_state), "train": train(game_state)}
@@ -50,5 +35,3 @@ def game():
         # print game state
         print(game_state)
 
-    
-    return
