@@ -1,4 +1,4 @@
-from classes import Player, Nemesis
+from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver
 
 def game():
     # start game and grab player + nemesis names
@@ -12,7 +12,16 @@ def game():
     nemesis = Player(nemesis_name)
 
     # spawn enemies
+    enemies = {}
 
-    
+    colosuss = Colossus()
+    vrolux = Vrolux()
+    bosses = [colosuss, vrolux]
+    enemies["bosses"] = bosses
+
+    sentry = Sentry()
+    reaver = Reaver()
+    minibosses = [sentry, reaver]
+    enemies["minibosses"] = minibosses
 
     return
