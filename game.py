@@ -9,7 +9,7 @@ def game():
     player = Player(player_name)
 
     nemesis_name = input("What do you want your nemesis to be called?")
-    nemesis = Player(nemesis_name)
+    nemesis = Nemesis(nemesis_name)
 
     # spawn enemies
     enemies = {}
@@ -23,5 +23,10 @@ def game():
     reaver = Reaver()
     minibosses = [sentry, reaver]
     enemies["minibosses"] = minibosses
+
+    # prompt the user for an action
+    action_choices = {}
+    action_msg = "Explore? Train? Fight mini-boss? Fight boss?"
+    action = input(action_msg)
 
     return
