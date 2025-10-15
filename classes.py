@@ -10,9 +10,29 @@ class Player:
     def __init__(self, name):
         self.name = name
 
+    # getter for player name
+    @property
+    def name(self):
+        return self._name
+    
+    # setter for player name
+    @name.setter
+    def name(self, value):
+        self._name = value
+    
 class Nemesis:
     def __init__(self, name):
         self.name = name
+
+    # getter for nemesis name
+    @property
+    def name(self):
+        return self._name
+    
+    # setter for nemesis name
+    @name.setter
+    def name(self, value):
+        self._name = value
 
 class Boss:
     
@@ -27,6 +47,8 @@ class Colossus(Boss):
     MULT = {"health": 2.0, "armor": 2.0, "speed": .5, "attack": 1.5}
 
     def __init__(self):
+
+        # super init module to access parent init variables
         super().__init__()
         self.health = int(self.health * self.MULT["health"])
         self.armor  = int(self.armor * self.MULT["armor"])
