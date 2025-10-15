@@ -1,0 +1,43 @@
+class Player:
+    def __init__(self, name):
+        self.name = name
+
+class Nemesis:
+    def __init__(self, name):
+        self.name = name
+
+class Boss:
+    
+    def __init__(self):
+        self.health = 1000
+        self.armor = 100
+        self.speed = 100
+        self.attack = 200
+
+class Colossus(Boss):
+
+    MULT = {"health": 2.0, "armor": 2.0, "speed": .5, "attack": 1.5}
+
+    def __init__(self):
+        super().__init__()
+        self.health = int(self.health * self.MULT["health"])
+        self.armor  = int(self.armor * self.MULT["armor"])
+        self.speed  = int(self.speed * self.MULT["speed"])
+        self.attack = int(self.attack * self.MULT["attack"])
+
+class Vrolux(Boss):
+
+    MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
+    def __init__(self):
+        super().__init__()
+        self.health = int(self.health * self.MULT["health"])
+        self.armor  = int(self.armor * self.MULT["armor"])
+        self.speed  = int(self.speed * self.MULT["speed"])
+        self.attack = int(self.attack * self.MULT["attack"])
+
+class Miniboss():
+    def __init__(self):
+        self.health = 500
+        self.armor = 50
+        self.speed = 50
+        self.attack = 100
