@@ -6,6 +6,24 @@ Need to make sure that balancing feels good as well.
 - Courtney Merritt
 """
 
+class GameState:
+    def __init__(self, Player, Nemesis, boss_one=None, boss_two=None, mboss_one=None, mboss_two=None):
+        self.player = Player
+        self.nemesis = Nemesis
+        self.progress = 0
+        if boss_one:
+            self.boss_one = boss_one
+        if boss_two:
+            self.boss_two = boss_two
+        if mboss_one:
+            self.mboss_one = mboss_one
+        if mboss_two:
+            self.mboss_two = mboss_two
+
+    def __str__(self):
+        print(Player)
+        print
+
 class Player:
     def __init__(self, name):
         self.name = name

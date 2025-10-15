@@ -1,4 +1,4 @@
-from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver
+from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver, GameState
 from actions import explore, train, fight
 
 def game():
@@ -24,21 +24,31 @@ def game():
     reaver = Reaver()
     minibosses = [sentry, reaver]
     enemies["minibosses"] = minibosses
+    # declare game state
+    game_state = GameState(player, nemesis, colosuss, vrolux, sentry, reaver)
 
+    # game loop 
     # prompt the user for an action
-    action_choices = {"fight": fight, "explore": explore, "train": train}
-    action_msg = "Explore? Train? Fight mini-boss? Fight boss?\n"
-    user_choice = ""
     while True:
-        try:
-            user_choice = input(action_msg).lower()
-            if user_choice not in action_choices.keys():
-                raise KeyError
-            break
-        except KeyError:
-            print("Invalid action choice. Please choose either \"fight\", \"explore\", or \"train\".")
-            
-    # call appropriate action function
-    action = action_choices[user_choice]
+        action_choices = {"fight": fight(game_state), "explore": explore(game_state), "train": train(game_state)}
+        action_msg = "Explore? Train? Fight mini-boss? Fight boss?\n"
+        user_choice = ""
+        while True:
+            try:
+                user_choice = input(action_msg).lower()
+                if user_choice == "quit" or user_choice == "q":
+                    return 
+                elif user_choice not in action_choices.keys():
+                    raise KeyError
+                break
+            except KeyError:
+                print("Invalid action choice. Please choose either \"fight\", \"explore\", or \"train\".")
+                
+        # modify player/game stats by editing game state
+        action = action_choices[user_choice]
+
+        # print game state
+        print(game_state)
+
     
     return
