@@ -4,7 +4,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 
 ## Core Game Loop
 
-- [ ] Add a main loop in `game()` that ends on quit or player death.  
+- [X] Add a main loop in `game()` that ends on quit or player death.  
   - Print the current situation each turn.  
     - Need to give each class __str__ function.
   - Prompt for an action (fight, train, explore, quit).  
@@ -14,7 +14,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
   - Keep a simple `state` object or dictionary with `player`, `nemesis`, `enemies`, `progress`, etc.  
   - Pass this into your action functions so they can modify it.
 
-- [ ] Validate input robustly.  
+- [X] Validate input robustly.  
   - Accept only listed commands, reprompt otherwise.  
   - Optionally allow shortcuts (`f`, `t`, `e`, `q`).
 

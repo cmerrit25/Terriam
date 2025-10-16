@@ -15,7 +15,15 @@ def game():
     # Game Loop
     # prompt the user for an action
     while True:
-        action_choices = {"fight": fight(game_state), "explore": explore(game_state), "train": train(game_state)}
+        action_choices = {
+            "fight": fight(game_state), 
+            "explore": explore(game_state), 
+            "train": train(game_state), 
+            "f": fight(game_state), 
+            "e": explore(game_state), 
+            "t": train(game_state)
+        }
+
         action_msg = "Explore? Train? Fight mini-boss? Fight boss?\n"
         user_choice = ""
         while True:
