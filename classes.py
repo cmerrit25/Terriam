@@ -6,6 +6,8 @@ Need to make sure that balancing feels good as well.
 - Courtney Merritt
 """
 
+import math
+
 class GameState:
     def __init__(self, Player, Nemesis, boss_one=None, boss_two=None, mboss_one=None, mboss_two=None):
         self.player = Player
@@ -34,10 +36,15 @@ class GameState:
 class Player:
     def __init__(self, name):
         self.name = name
-        self.attack = 25
-        self.defense = 10
-        self.speed = 15
-        self.health = 75
+        self.stats = {
+            self.attack: 25,
+            self.defense: 10,
+            self.speed: 15,
+            self.health: 75
+        }
+        
+        self.xp = 0
+        self.level = 1
 
     # getter for player name
     @property
@@ -51,7 +58,39 @@ class Player:
 
     def __str__(self):
         stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}\n"
-        return stats
+        lvl_data = f"The player is level {self.level} and needs {self.calc_lvl_cost} to get to level {self.level + 1}!\n"
+        return f"{stats}{lvl_data}"
+    
+    def take_damage(self, damage):
+        player_death = False
+        self.health -= damage
+        if self.health <= 0:
+            player_death = True
+        return player_death
+
+    def gain_xp(self, xp_gained):
+        self.xp += xp_gained
+        self.level_up()
+
+    def calc_lvl_cost(self):
+        return 10 * math.pow(2, self.level - 1)
+    
+    def scale_stats(self):
+        for stat in self.stats.values():
+            stat *= 1.1
+
+    def level_up(self):
+        lvl_up_xp = self.calc_lvl_cost()
+        
+        while self.xp >= lvl_up_xp:
+            if self.xp == lvl_up_xp:
+                self.xp -= lvl_up_xp
+                self.level += 1
+                self.scale_stats()
+
+            lvl_up_xp = self.calc_lvl_cost()
+        
+        print(f"{self.name} has leveled up! Their new level is now {self.level}!")
     
 class Nemesis:
     def __init__(self, name):
