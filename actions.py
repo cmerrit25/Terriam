@@ -24,10 +24,12 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState):
         print(item_found)
         choice = input(f"Do you want to keep and equip {item_found}?\n").lower()
         if choice == "yes" or "y":
-            gamestate.equip_item(item_found)
+            # need to implement items class
+            # gamestate.equip_item(item_found)
             pass
         else:
             print(f"{item_found} was not equipped...")
+
 
 def train(gamestate):
     pass

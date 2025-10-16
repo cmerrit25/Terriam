@@ -51,15 +51,21 @@ class Player:
         
         self.xp = 0
         self.level = 1
+
+    # setter for player name
+    @name.setter
+    def name(self, value):
+        self._name = value
+
     # getter for player name
     @property
     def name(self):
         return self._name
     
-    # setter for player name
-    @name.setter
-    def name(self, value):
-        self._name = value
+    # getter for player stats
+    @property
+    def stats(self):
+        return self.stats
 
     def __str__(self):
         stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}\n"
