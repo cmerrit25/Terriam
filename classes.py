@@ -27,6 +27,10 @@ class GameState:
 class Player:
     def __init__(self, name):
         self.name = name
+        self.attack = 25
+        self.defense = 10
+        self.speed = 15
+        self.health = 75
 
     # getter for player name
     @property
@@ -37,10 +41,18 @@ class Player:
     @name.setter
     def name(self, value):
         self._name = value
+
+    def __str__(self):
+        stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}"
+        return stats
     
 class Nemesis:
     def __init__(self, name):
         self.name = name
+        self.attack = 23
+        self.defense = 8
+        self.speed = 13
+        self.health = 73
 
     # getter for nemesis name
     @property
@@ -51,6 +63,10 @@ class Nemesis:
     @name.setter
     def name(self, value):
         self._name = value
+
+    def __str__(self):
+        stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}"
+        return stats
 
 class Boss:
     
