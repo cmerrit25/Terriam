@@ -37,15 +37,14 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.stats = {
-            self.attack: 25,
-            self.defense: 10,
-            self.speed: 15,
-            self.health: 75
+            "attack": 25,
+            "defense": 10,
+            "speed": 15,
+            "health": 75
         }
         
         self.xp = 0
         self.level = 1
-
     # getter for player name
     @property
     def name(self):
@@ -95,10 +94,12 @@ class Player:
 class Nemesis:
     def __init__(self, name):
         self.name = name
-        self.attack = 23
-        self.defense = 8
-        self.speed = 13
-        self.health = 73
+        self.stats = {
+            "attack": 25,
+            "defense": 10,
+            "speed": 15,
+            "health": 75
+        }
 
     # getter for nemesis name
     @property
