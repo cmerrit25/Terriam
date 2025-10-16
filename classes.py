@@ -11,6 +11,7 @@ class GameState:
         self.player = Player
         self.nemesis = Nemesis
         self.progress = 0
+        self.bosses_defeated = 0
         if boss_one:
             self.boss_one = boss_one
         if boss_two:
@@ -21,8 +22,14 @@ class GameState:
             self.mboss_two = mboss_two
 
     def __str__(self):
-        print(Player)
-        print
+        player_stats = str(self.player)
+        nemesis_stats = str(self.nemesis)
+        plyr_boss_prog = f"The player has defeated {self.bosses_defeated} boss(es).\n"
+        if self.player > self.nemesis:
+            comp_strength = "The player is currently stronger than the nemesis.\n"
+        else:
+            comp_strength = "The player is currently weaker than the nemesis...\n"
+        return f"{player_stats}{nemesis_stats}{plyr_boss_prog}{comp_strength}"
 
 class Player:
     def __init__(self, name):
@@ -43,7 +50,7 @@ class Player:
         self._name = value
 
     def __str__(self):
-        stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}"
+        stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}\n"
         return stats
     
 class Nemesis:
@@ -65,7 +72,7 @@ class Nemesis:
         self._name = value
 
     def __str__(self):
-        stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}"
+        stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}\n"
         return stats
 
 class Boss:
