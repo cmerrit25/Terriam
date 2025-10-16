@@ -25,7 +25,7 @@ def get_player_nemesis():
                                 Please give me a valid name for your character!\n" )
         else: 
             break
-        
+
     nemesis = Nemesis(nemesis_name)
 
     return player, nemesis
@@ -44,3 +44,18 @@ def spawn_enemies():
     enemies["minibosses"] = minibosses
 
     return colosuss, vrolux, sentry, reaver, enemies
+
+def get_item():
+    pass
+
+def get_small_enemy():
+    pass
+
+def get_large_enemy():
+    pass
+
+def get_miniboss():
+    pass
+
+def get_boss():
+    pass

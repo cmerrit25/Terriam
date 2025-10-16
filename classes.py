@@ -32,6 +32,12 @@ class GameState:
         else:
             comp_strength = "The player is currently weaker than the nemesis...\n"
         return f"{player_stats}{nemesis_stats}{plyr_boss_prog}{comp_strength}"
+    
+    def equip_item(self, item):
+        player_stats = self.player.get_stats()
+        item_stats = item.get_stats()
+        for stat in item_stats.keys():
+            player_stats[stat] += stat
 
 class Player:
     def __init__(self, name):

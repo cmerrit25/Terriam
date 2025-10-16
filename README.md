@@ -47,7 +47,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 ### Player
 - [X] Add base stats (`health`, `attack`, `armor`, `speed`, `xp`, `level`).  
 - [X] Add methods such as `take_damage()`, `gain_xp()`, or `level_up()`.  
-- [ ] Include basic validation for name input.
+- [X] Include basic validation for name input.
 
 ### Nemesis
 - [ ] Store nemesis-specific attributes (motivation, level scaling, or story links).  
@@ -55,7 +55,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 
 ### Boss and Minibosses
 - [X] Centralize base stats in parent classes (`Boss`, `Miniboss`).  
-- [ ] Keep multipliers in child classes (`Colossus`, `Vrolux`, `Sentry`, `Reaver`).  
+- [X] Keep multipliers in child classes (`Colossus`, `Vrolux`, `Sentry`, `Reaver`).  
 - [ ] Add `name` and `description` attributes for better in-game feedback.
 
 ## Game Balance and Data
@@ -66,7 +66,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 
 ## Input and Output
 
-- [ ] Validate player and nemesis names (non-empty, reasonable length).  
+- [X] Validate player and nemesis names (non-empty, reasonable length).  
 - [ ] Use consistent prompts and error messages.  
 - [ ] Print clear feedback for all actions.
 
