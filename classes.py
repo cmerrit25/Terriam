@@ -129,17 +129,21 @@ class Player:
             player_death = True
         return player_death
 
+    # gain xp then check if level up is needed
     def gain_xp(self, xp_gained):
         self.xp += xp_gained
         self.level_up()
 
+    # calc xp cost to lelel up
     def calc_lvl_cost(self):
         return 10 * math.pow(2, self.level - 1)
     
+    # scale stats by 10 percent
     def scale_stats(self):
         for stat in self.stats.values():
             stat *= 1.1
 
+    # check if level up is needed
     def level_up(self):
         lvl_up_xp = self.calc_lvl_cost()
         
@@ -153,6 +157,7 @@ class Player:
         
         print(f"{self.name} has leveled up! Their new level is now {self.level}!")
 
+# collection of current game instance information
 class GameState:
     def __init__(self, player: Player, nemesis: Nemesis, boss_one=None, boss_two=None, mboss_one=None, mboss_two=None):
         self.player = player
