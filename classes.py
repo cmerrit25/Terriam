@@ -53,6 +53,9 @@ class Colossus(Boss):
         self.speed  = int(self.speed * self.MULT["speed"])
         self.attack = int(self.attack * self.MULT["attack"])
 
+    def __str__(self):
+        return f"Colossus HP: {self.health}"
+
 class Vrolux(Boss):
 
     MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
@@ -62,6 +65,9 @@ class Vrolux(Boss):
         self.armor  = int(self.armor * self.MULT["armor"])
         self.speed  = int(self.speed * self.MULT["speed"])
         self.attack = int(self.attack * self.MULT["attack"])
+
+    def __str__(self):
+        return f"Vrolux HP: {self.health}"
 
 class Miniboss():
     def __init__(self):
@@ -80,6 +86,9 @@ class Sentry(Miniboss):
         self.speed  = int(self.speed * self.MULT["speed"])
         self.attack = int(self.attack * self.MULT["attack"])
 
+    def __str__(self):
+        return f"Sentry HP: {self.health}"
+    
 class Reaver(Miniboss):
     MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
     def __init__(self):
@@ -88,6 +97,9 @@ class Reaver(Miniboss):
         self.armor  = int(self.armor * self.MULT["armor"])
         self.speed  = int(self.speed * self.MULT["speed"])
         self.attack = int(self.attack * self.MULT["attack"])
+
+    def __str__(self):
+        return f"Reaper HP: {self.health}"
 
 class Player:
     def __init__(self, name):
@@ -163,7 +175,7 @@ class GameState:
         self.player = player
         self.nemesis = nemesis
         self.progress = 0
-        self.bosses_defeated = 0
+        self.bosses_defeated = []
         if boss_one:
             self.boss_one = boss_one
         if boss_two:
@@ -172,12 +184,12 @@ class GameState:
             self.mboss_one = mboss_one
         if mboss_two:
             self.mboss_two = mboss_two
-            
+
     # print relevant gamestate information to console
     def __str__(self):
         player_stats = str(self.player)
         nemesis_stats = str(self.nemesis)
-        plyr_boss_prog = f"The player has defeated {self.bosses_defeated} boss(es).\n"
+        plyr_boss_prog = f"The player has defeated {len(self.bosses_defeated)} boss(es).\n"
         if self.player > self.nemesis:
             comp_strength = "The player is currently stronger than the nemesis.\n"
         else:

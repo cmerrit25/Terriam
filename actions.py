@@ -1,6 +1,12 @@
+"""
+This is a rudimentary implementation of action classes to allow the player/user to make moves during the game. 
+Currently limited to explore, fight and train. Need to improve readability with proper variable naming.
+"""
+
+
 from utils import get_item, get_small_enemy, get_large_enemy, get_miniboss, get_boss
 import random
-from classes import GameState
+from classes import GameState, Player
 
 # defines possible findings on explore action
 def explore(gamestate: GameState):
@@ -42,4 +48,38 @@ def train(gamestate: GameState) -> None:
 
 # adjust player object on fight action
 def fight(enemy, gamestate: GameState):
-    pass
+    print(enemy)
+    # print(gamestate.player.xp)
+    player_move = ""
+    enemy_move = ""
+    if gamestate.player.speed >= enemy.speed:
+        enemy.take_damage(player_move.damage)
+        if check_for_death(enemy):
+            return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
+        if gamestate.player.evasion > 0:                                                # <----- condense this logic into a function maybe?
+            ran_int = random.randint(0, gamestate.player.evasion)
+            if ran_int <= gamestate.player.evasion:
+                print(f"{gamestate.player.name} dodged {enemy_move}")
+            else:
+                gamestate.player.take_damage(enemy_move)
+                if check_for_death(gamestate.player):
+                    return False
+    else:
+        if gamestate.player.evasion > 0:                                                # <----- condense this logic into a function maybe?
+            ran_int = random.randint(0, gamestate.player.evasion)
+            if ran_int <= gamestate.player.evasion:
+                print(f"{gamestate.player.name} dodged {enemy_move}")
+            else:
+                gamestate.player.take_damage(enemy_move)
+                if check_for_death(gamestate.player):
+                    return False
+        enemy.take_damage(player_move)
+        if check_for_death(enemy):
+            return True
+
+# checking for full hp loss of a person/enemy
+def check_for_death(entity):
+    if entity.health <= 0:
+        return True
+    return False
+    
