@@ -2,6 +2,7 @@ from classes import GameState, Player
 
 from actions import train
 
+# rudimentary test for train()
 def test_train_gives_quarter_xp(gamestate: GameState):
     starting_xp = gamestate.player.xp  # default 100
     train(gamestate)
