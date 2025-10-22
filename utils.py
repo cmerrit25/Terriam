@@ -1,6 +1,7 @@
 from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver
 import random
 
+# grab player and nemesis objects
 def get_player_nemesis():
     start_msg = "Welcome to Terriam, a world of wonder and randomness inspired by the peakness of Terraria and Pokemon!\n"
     print(start_msg)
@@ -31,6 +32,7 @@ def get_player_nemesis():
 
     return player, nemesis
 
+# spawn all enemies available
 def spawn_enemies():
     enemies = {}
 
@@ -46,21 +48,26 @@ def spawn_enemies():
 
     return colosuss, vrolux, sentry, reaver, enemies
 
+# spawn random item
 def get_item():
     pass
 
+# spawn small enemy
 def get_small_enemy():
     pass
 
+# spawn large enemy
 def get_large_enemy():
     pass
 
+# spawn random miniboss
 def get_miniboss():
     ran_int = random.randint(0,1)
     if ran_int:
         return Sentry()
     return Reaver()
 
+# spawn random boss
 def get_boss():
     ran_int = random.randint(0,1)
     if ran_int:
