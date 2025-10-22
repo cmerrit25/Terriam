@@ -10,7 +10,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
   - Prompt for an action (fight, train, explore, quit).  
   - Break cleanly on “quit”.
 
-- [ ] Handle state updates in one place.  
+- [X] Handle state updates in one place.  
   - Keep a simple `state` object or dictionary with `player`, `nemesis`, `enemies`, `progress`, etc.  
   - Pass this into your action functions so they can modify it.
 
@@ -31,9 +31,9 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 - [ ] Reward XP or loot if the player wins.
 
 ### `train()`
-- [ ] Increment player stats such as health, attack, armor, or speed.  
-- [ ] Optionally cost time or resources.  
-- [ ] Print progress so the player can see improvement.
+- [ ] Increment player stats such as health, attack, armor, or speed.          <------ DO THIS NEXT
+- [ ] Optionally cost time or resources.                                       <------ DO THIS NEXT
+- [ ] Print progress so the player can see improvement.                        <------ DO THIS NEXT
 
 ### `explore()`
 - [ ] Randomly generate exploration outcomes:
@@ -50,8 +50,8 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 - [X] Include basic validation for name input.
 
 ### Nemesis
-- [ ] Store nemesis-specific attributes (motivation, level scaling, or story links).  
-- [ ] Tie progression or difficulty increases to nemesis development.
+- [ ] Store nemesis-specific attributes (motivation, level scaling, or story links).  <------ DO THIS NEXT
+- [ ] Tie progression or difficulty increases to nemesis development.                 <------ DO THIS NEXT
 
 ### Boss and Minibosses
 - [X] Centralize base stats in parent classes (`Boss`, `Miniboss`).  
@@ -67,7 +67,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 ## Input and Output
 
 - [X] Validate player and nemesis names (non-empty, reasonable length).  
-- [ ] Use consistent prompts and error messages.  
+- [ ] Use consistent prompts and error messages.                                      <------- DO THIS NEXT
 - [ ] Print clear feedback for all actions.
 
 ## Testing and Debugging
@@ -78,6 +78,6 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 
 ## Extensibility
 
-- [ ] Plan future systems early (inventory, skills, quests).  
-- [ ] Use type hints to improve readability and editor support.  
+- [ ] Plan future systems early (inventory, skills, quests).                          <------- DO THIS NEXT
+- [ ] Use type hints to improve readability and editor support.                       <------- DO THIS NEXT
 - [ ] Document each new class or function as it’s added.
