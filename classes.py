@@ -172,7 +172,8 @@ class GameState:
             self.mboss_one = mboss_one
         if mboss_two:
             self.mboss_two = mboss_two
-
+            
+    # print relevant gamestate information to console
     def __str__(self):
         player_stats = str(self.player)
         nemesis_stats = str(self.nemesis)
@@ -183,6 +184,7 @@ class GameState:
             comp_strength = "The player is currently weaker than the nemesis...\n"
         return f"{player_stats}{nemesis_stats}{plyr_boss_prog}{comp_strength}"
     
+    # adjust player stats from item equip
     def equip_item(self, item):
         player_stats = self.player.get_stats()
         item_stats = item.get_stats()
