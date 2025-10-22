@@ -15,7 +15,8 @@ class Nemesis:
             "attack": 25,
             "defense": 10,
             "speed": 15,
-            "health": 75
+            "health": 75,
+            "evasion": 10
         }
 
     # getter for nemesis name
@@ -39,6 +40,9 @@ class Boss:
         self.armor = 100
         self.speed = 100
         self.attack = 200
+        
+    def take_damage(self, damage):
+        self.health -= damage
 
 class Colossus(Boss):
 
@@ -76,6 +80,9 @@ class Miniboss():
         self.speed = 50
         self.attack = 100
 
+    def take_damage(self, damage):
+        self.health -= damage
+
 class Sentry(Miniboss):
     MULT = {"health": 2.0, "armor": 2.0, "speed": .5, "attack": 1.5}
 
@@ -108,7 +115,8 @@ class Player:
             "attack": 25,
             "defense": 10,
             "speed": 15,
-            "health": 75
+            "health": 75,
+            "evasion": 10
         }
         
         self.xp = 0
