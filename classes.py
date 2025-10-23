@@ -11,13 +11,12 @@ import math, random
 class Nemesis:
     def __init__(self, name):
         self.name = name
-        self.stats = {
-            "attack": 25,
-            "defense": 10,
-            "speed": 15,
-            "health": 75,
-            "evasion": 10
-        }
+        self.attack = 25
+        self.defense = 10
+        self.speed = 15
+        self.health = 75
+        self.evasion = 10
+        self.pierce = 10
 
     # getter for nemesis name
     @property
@@ -156,23 +155,32 @@ class Player:
         self.level = 1
 
         self.moves = {
-            "palm strike": self.stats.get("attack") * .4
+            "palm strike": self.attack * .4
         }
-
-    # setter for player name
-    @name.setter
-    def name(self, value):
-        self._name = value
 
     # getter for player name
     @property
     def name(self):
         return self._name
     
+    # setter for player name
+    @name.setter
+    def name(self, value):
+        self._name = value
+    
     # getter for player stats
     @property
-    def stats(self):
-        return self.stats
+    def get_stats(self):
+        return {
+            "attack": self.attack,
+            "defense": self.defense,
+            "speed": self.speed,
+            "health": self.health,
+            "evasion": self.evasion,
+            "pierce": self.pierce,
+            "level": self.level,
+            "xp": self.xp
+        }
 
     def __str__(self):
         stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}\n"

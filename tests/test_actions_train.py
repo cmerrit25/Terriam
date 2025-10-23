@@ -11,4 +11,7 @@ def test_four_trains_equal_level(gamestate: GameState):
     assert starting_level - ending_level == 1
     
 def test_train_gives_quarter_xp(gamestate: GameState):
-    pass
+    starting_xp = gamestate.player.xp
+    train(gamestate)
+    ending_xp = gamestate.player.xp
+    assert ending_xp - starting_xp == gamestate.player.calc_lvl_cost / 4
