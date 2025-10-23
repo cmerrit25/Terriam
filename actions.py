@@ -42,7 +42,7 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState):
 # rudimentary, need to insert minigame or something to reward on success with training xp
 def train(gamestate: GameState) -> None:
     # always give a 4th of a level per training
-    train_xp = gamestate.player.xp / 4
+    train_xp = gamestate.player.calc_lvl_cost() / 4
     gamestate.player.gain_xp(train_xp)
     return
 

@@ -248,8 +248,8 @@ class GameState:
         return f"{player_stats}{nemesis_stats}{plyr_boss_prog}{comp_strength}"
     
     # adjust player stats from item equip
-    def equip_item(self, item):
-        player_stats = self.player.get_stats()
-        item_stats = item.get_stats()
-        for stat in item_stats.keys():
-            player_stats[stat] += stat
+    # def equip_item(self, item):
+    #     player_stats = self.player.get_stats()
+    #     item_stats = item.get_stats()
+    #     for stat in item_stats.keys():
+    #         player_stats[stat] += stat
