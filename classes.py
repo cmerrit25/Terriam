@@ -48,6 +48,7 @@ class Colossus(Boss):
 
     MULT = {"health": 2.0, "armor": 2.0, "speed": .5, "attack": 1.5}
 
+   
     def __init__(self):
 
         # super init module to access parent init variables
@@ -57,8 +58,14 @@ class Colossus(Boss):
         self.speed  = int(self.speed * self.MULT["speed"])
         self.attack = int(self.attack * self.MULT["attack"])
 
+        self.moves = {
+            "Crushing slam": self.attack * .4
+        }
+
     def __str__(self):
         return f"Colossus HP: {self.health}"
+    
+
 
 class Vrolux(Boss):
 
@@ -69,6 +76,10 @@ class Vrolux(Boss):
         self.armor  = int(self.armor * self.MULT["armor"])
         self.speed  = int(self.speed * self.MULT["speed"])
         self.attack = int(self.attack * self.MULT["attack"])
+
+        self.moves = {
+            "Vortex Blitz": self.attack * .3
+        }
 
     def __str__(self):
         return f"Vrolux HP: {self.health}"
@@ -93,6 +104,10 @@ class Sentry(Miniboss):
         self.speed  = int(self.speed * self.MULT["speed"])
         self.attack = int(self.attack * self.MULT["attack"])
 
+        self.moves = {
+            "Grounding Crush": self.attack * .3
+        }
+
     def __str__(self):
         return f"Sentry HP: {self.health}"
     
@@ -105,8 +120,13 @@ class Reaver(Miniboss):
         self.speed  = int(self.speed * self.MULT["speed"])
         self.attack = int(self.attack * self.MULT["attack"])
 
+        self.moves = {
+            "Wrath Slash": self.attack * .3
+        }
+        
     def __str__(self):
         return f"Reaper HP: {self.health}"
+    
 
 class Player:
     def __init__(self, name):
@@ -121,6 +141,10 @@ class Player:
         
         self.xp = 0
         self.level = 1
+
+        self.moves = {
+            "palm strike": self.stats.get("attack") * .4
+        }
 
     # setter for player name
     @name.setter

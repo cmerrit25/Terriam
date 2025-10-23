@@ -6,7 +6,7 @@ Currently limited to explore, fight and train. Need to improve readability with 
 
 from utils import get_item, get_small_enemy, get_large_enemy, get_miniboss, get_boss
 import random
-from classes import GameState, Player
+from classes import GameState, Player, Boss, Miniboss
 
 # defines possible findings on explore action
 def explore(gamestate: GameState):
@@ -47,7 +47,7 @@ def train(gamestate: GameState) -> None:
     return
 
 # adjust player object on fight action
-def fight(enemy, gamestate: GameState):
+def fight(enemy: Miniboss | Boss, gamestate: GameState):
     print(enemy)
     # print(gamestate.player.xp)
     player_move = ""
