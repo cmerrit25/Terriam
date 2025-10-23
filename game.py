@@ -16,12 +16,12 @@ def game():
     # prompt the user for an action
     while True:
         action_choices = {
-            "fight": fight(game_state), 
-            "explore": explore(game_state), 
-            "train": train(game_state), 
-            "f": fight(game_state), 
-            "e": explore(game_state), 
-            "t": train(game_state)
+            "fight": fight, 
+            "explore": explore, 
+            "train": train, 
+            "f": fight, 
+            "e": explore, 
+            "t": train
         }
 
         action_msg = "Explore? Train? Fight mini-boss? Fight boss?\n"
@@ -37,8 +37,11 @@ def game():
             except KeyError:
                 print("Invalid action choice. Please choose either \"fight\", \"explore\", or \"train\".")
                 
-        # modify player/game stats by editing game state
-        action = action_choices[user_choice]
+        # call action function until the action is finished
+        action_func = action_choices[user_choice]
+        repeated_act = action_func(game_state)
+        while not repeated_act:
+            action_func(game_state)
 
         # print game state
         print(game_state)

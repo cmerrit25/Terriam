@@ -56,7 +56,7 @@ def fight(enemy: Miniboss | Boss, gamestate: GameState):
         enemy.take_damage(player_move.damage)
         if check_for_death(enemy):
             return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
-        if gamestate.player.evasion > 0:                                                # <----- condense this logic into a function maybe?
+        if gamestate.player.evasion > 0:                                                
             ran_int = random.randint(0, gamestate.player.evasion)
             if ran_int <= gamestate.player.evasion:
                 print(f"{gamestate.player.name} dodged {enemy_move}")
@@ -82,4 +82,7 @@ def check_for_death(entity):
     if entity.health <= 0:
         return True
     return False
+
+def evasion_calc(gamestate: GameState):
+    pass
     
