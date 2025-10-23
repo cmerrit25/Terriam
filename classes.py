@@ -3,6 +3,8 @@ This file serves as class definition library and is extremely rudimentary.
 I'm planning to make multiple more bosses, enemies and friends for the player to interact with.
 Need to make sure that balancing feels good as well.
 
+- Need to start building items class/list to let the user find things in explore. 10/23
+
 - Courtney Merritt
 """
 
