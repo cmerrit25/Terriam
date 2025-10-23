@@ -6,7 +6,7 @@ Need to make sure that balancing feels good as well.
 - Courtney Merritt
 """
 
-import math
+import math, random
     
 class Nemesis:
     def __init__(self, name):
@@ -41,7 +41,9 @@ class Boss:
         self.speed = 100
         self.attack = 200
         
-    def take_damage(self, damage):
+    def take_damage(self, enemy, damage):
+        if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
+            damage /= 2
         self.health -= damage
 
 class Colossus(Boss):
@@ -65,6 +67,9 @@ class Colossus(Boss):
     def __str__(self):
         return f"Colossus HP: {self.health}"
     
+    def get_move_damage(self):
+        return random.choice(list(self.moves.values()))
+    
 
 
 class Vrolux(Boss):
@@ -83,6 +88,9 @@ class Vrolux(Boss):
 
     def __str__(self):
         return f"Vrolux HP: {self.health}"
+    
+    def get_move_damage(self):
+        return random.choice(list(self.moves.values()))
 
 class Miniboss():
     def __init__(self):
@@ -111,6 +119,9 @@ class Sentry(Miniboss):
     def __str__(self):
         return f"Sentry HP: {self.health}"
     
+    def get_move_damage(self):
+        return random.choice(list(self.moves.values()))
+    
 class Reaver(Miniboss):
     MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
     def __init__(self):
@@ -123,22 +134,24 @@ class Reaver(Miniboss):
         self.moves = {
             "Wrath Slash": self.attack * .3
         }
-        
+
     def __str__(self):
         return f"Reaper HP: {self.health}"
+    
+    def get_move_damage(self):
+        return random.choice(list(self.moves.values()))
     
 
 class Player:
     def __init__(self, name):
         self.name = name
-        self.stats = {
-            "attack": 25,
-            "defense": 10,
-            "speed": 15,
-            "health": 75,
-            "evasion": 10
-        }
-        
+       
+        self.attack = 25
+        self.defense = 10
+        self.speed = 15
+        self.health = 75
+        self.evasion = 10
+        self.pierce = 10
         self.xp = 0
         self.level = 1
 
@@ -166,8 +179,14 @@ class Player:
         lvl_data = f"The player is level {self.level} and needs {self.calc_lvl_cost} to get to level {self.level + 1}!\n"
         return f"{stats}{lvl_data}"
     
-    def take_damage(self, damage):
+    # return a random move's damage from the list of player moves
+    def get_move_damage(self):
+        return random.choice(list(self.moves.values()))
+    
+    def take_damage(self, enemy: Miniboss | Boss , damage):
         player_death = False
+        if self.defense >= enemy.pierce:                    #  <----------- need to add pierce to enemy classes
+            damage /= 2
         self.health -= damage
         if self.health <= 0:
             player_death = True

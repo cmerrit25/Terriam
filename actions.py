@@ -50,7 +50,7 @@ def train(gamestate: GameState) -> None:
 def fight(enemy: Miniboss | Boss, gamestate: GameState):
     print(enemy)
     # print(gamestate.player.xp)
-    player_move = ""
+    player_move = gamestate.player.get_move_damage()
     enemy_move = ""
     if gamestate.player.speed >= enemy.speed:
         enemy.take_damage(player_move.damage)
