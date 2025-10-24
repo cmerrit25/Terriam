@@ -50,7 +50,16 @@ def game():
                         lvl_xp = game_state.player.calc_lvl_cost()
                         game_state.player.gain_xp(lvl_xp)
                     print(f"The player has been rewarded with two levels!")
-                    
+
+            # if user wants to explore
+            elif user_choice == "explore" or user_choice == "e":
+                pass
+
+            # if user wants to train
+            elif user_choice == "train" or user_choice == "t":
+                pass
+
+
             # print game state
             print(game_state)
 
