@@ -15,14 +15,7 @@ def game():
     # Game Loop
     # prompt the user for an action
     while True:
-        action_choices = {
-            "fight": fight, 
-            "explore": explore, 
-            "train": train, 
-            "f": fight, 
-            "e": explore, 
-            "t": train
-        }
+        action_choices = ["fight", "explore", "train", "f", "e", "t"]
 
         action_msg = "Explore? Train? Fight mini-boss? Fight boss?\n"
         user_choice = ""
@@ -30,19 +23,21 @@ def game():
             try:
                 user_choice = input(action_msg).lower()
                 if user_choice == "quit" or user_choice == "q":
-                    return 
-                elif user_choice not in action_choices.keys():
+                    return "Player has quit the game..."
+                elif user_choice not in action_choices:
                     raise KeyError
-                break
             except KeyError:
-                print("Invalid action choice. Please choose either \"fight\", \"explore\", or \"train\".")
-                
-        # call action function until the action is finished
-        action_func = action_choices[user_choice]
-        repeated_act = action_func(game_state)
-        while not repeated_act:
-            action_func(game_state)
+                print("Invalid action choice. Please choose either \"fight\", \"explore\", or \"train\".\n")
+                break
 
-        # print game state
-        print(game_state)
+            # check if the player is high enough level to fight regular enemy, miniboss, or boss. Spawn enemy accordingly
+            if user_choice == "fight" or user_choice == "f":
+                # spawn enemy based on player stats/level
+                enemy = ""
+                player_win = fight(enemy, game_state)
+                if not player_win:
+                    print(f"The player lost to {enemy}\n")
+
+            # print game state
+            print(game_state)
 

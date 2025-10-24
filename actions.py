@@ -46,36 +46,39 @@ def train(gamestate: GameState) -> None:
     gamestate.player.gain_xp(train_xp)
     return
 
-# adjust player object on fight action
+# adjust player object on fight action, right now moves are random but should be selected by user
 def fight(enemy: Miniboss | Boss, gamestate: GameState):
+    # print enemy
     print(enemy)
-    # print(gamestate.player.xp)
-    player_move = gamestate.player.get_move_damage()
-    enemy_move = ""
-    if gamestate.player.speed >= enemy.speed:
-        enemy.take_damage(player_move.damage)
-        if check_for_death(enemy):
-            return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
-        if gamestate.player.evasion > 0:                                                
-            ran_int = random.randint(0, gamestate.player.evasion)
-            if ran_int <= gamestate.player.evasion:
-                print(f"{gamestate.player.name} dodged {enemy_move}")
-            else:
-                gamestate.player.take_damage(enemy_move)
-                if check_for_death(gamestate.player):
-                    return False
-    else:
-        if gamestate.player.evasion > 0:                                                # <----- condense this logic into a function maybe?
-            ran_int = random.randint(0, gamestate.player.evasion)
-            if ran_int <= gamestate.player.evasion:
-                print(f"{gamestate.player.name} dodged {enemy_move}")
-            else:
-                gamestate.player.take_damage(enemy_move)
-                if check_for_death(gamestate.player):
-                    return False
-        enemy.take_damage(player_move)
-        if check_for_death(enemy):
-            return True
+    # print player
+    print(gamestate.player)
+    while True:
+        player_move = gamestate.player.get_move_damage()
+        enemy_move = ""
+        if gamestate.player.speed >= enemy.speed:
+            enemy.take_damage(player_move.damage)
+            if check_for_death(enemy):
+                return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
+            if gamestate.player.evasion > 0:                                                
+                ran_int = random.randint(0, gamestate.player.evasion)
+                if ran_int <= gamestate.player.evasion:
+                    print(f"{gamestate.player.name} dodged {enemy_move}")
+                else:
+                    gamestate.player.take_damage(enemy_move)
+                    if check_for_death(gamestate.player):
+                        return False
+        else:
+            if gamestate.player.evasion > 0:                                                # <----- condense this logic into a function maybe?
+                ran_int = random.randint(0, gamestate.player.evasion)
+                if ran_int <= gamestate.player.evasion:
+                    print(f"{gamestate.player.name} dodged {enemy_move}")
+                else:
+                    gamestate.player.take_damage(enemy_move)
+                    if check_for_death(gamestate.player):
+                        return False
+            enemy.take_damage(player_move)
+            if check_for_death(enemy):
+                return True
 
 # checking for full hp loss of a person/enemy
 def check_for_death(entity):
