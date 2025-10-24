@@ -9,6 +9,56 @@ Need to make sure that balancing feels good as well.
 """
 
 import math, random
+
+class Small_Enemy:
+    def __init__(self):
+        self.health = 50
+        self.armor = 5
+        self.speed = 5
+        self.attack = 10
+        
+    def take_damage(self, enemy, damage):
+        if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
+            damage /= 2
+        self.health -= damage
+
+    def get_move_damage(self):
+        return random.choice(list(self.moves.values()))
+    
+class Slime(Small_Enemy):
+    def __init__(self):
+
+        # super init module to access parent init variables
+        super().__init__()
+        self.name = "Slime"
+        self.moves = {
+            "Slap": self.attack * .4
+        }
+    
+class Large_Enemy:
+    def __init__(self):
+        self.health = 100
+        self.armor = 10
+        self.speed = 10
+        self.attack = 20
+
+    def take_damage(self, enemy, damage):
+        if enemy.pierce < self.armor:
+            damage /= 2
+        self.health -= damage
+
+    def get_move_damage(self):
+        return random.choice(list(self.moves.values()))
+    
+class Ogre(Large_Enemy):
+    def __init__(self):
+
+        # super init module to access parent init variables
+        super().__init__()
+        self.name = "Ogre"
+        self.moves = {
+            "Stone Charge": self.attack * .4
+        }
     
 class Nemesis:
     def __init__(self, name):

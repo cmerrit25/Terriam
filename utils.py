@@ -1,4 +1,4 @@
-from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver
+from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver, Slime, Ogre
 import random
 
 # grab player and nemesis objects
@@ -54,11 +54,11 @@ def get_item():
 
 # spawn small enemy
 def get_small_enemy():
-    pass
+    return Slime()
 
 # spawn large enemy
 def get_large_enemy():
-    pass
+    return Ogre()
 
 # spawn random miniboss
 def get_miniboss():
