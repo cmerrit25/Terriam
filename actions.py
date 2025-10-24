@@ -47,7 +47,14 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState):
 def train(gamestate: GameState) -> None:
     # always give a 4th of a level per training
     train_xp = gamestate.player.calc_lvl_cost() / 4
+
+    starting_xp = gamestate.player.xp
     gamestate.player.gain_xp(train_xp)
+    ending_xp = gamestate.player.xp
+
+    xp_gained = ending_xp - starting_xp
+
+    print(f"The player gained {xp_gained} xp from training.")
     return
 
 # adjust player object on fight action, right now moves are random but should be selected by user
@@ -85,7 +92,7 @@ def fight(enemy: Miniboss | Boss, gamestate: GameState):
                 return True
 
 # checking for full hp loss of a person/enemy
-def check_for_death(entity):
+def check_for_death(entity: Player | Miniboss | Boss):
     if entity.health <= 0:
         return True
     return False

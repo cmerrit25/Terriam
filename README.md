@@ -22,18 +22,18 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 
 ### `fight()`
 - [ ] Decide what can be fought (miniboss or boss).  
-- [ ] Implement basic combat:
+- [X] Implement basic combat:
   - Compare speed to determine who attacks first.  
   - Subtract armor from incoming attack damage.  
   - Reduce health accordingly.  
   - Print results each round.  
-- [ ] End when someone reaches 0 health.  
+- [X] End when someone reaches 0 health.  
 - [ ] Reward XP or loot if the player wins.
 
 ### `train()`
-- [ ] Increment player stats such as health, attack, armor, or speed.          <------ DO THIS NEXT
+- [X] Increment player stats such as health, attack, armor, or speed.          <------ DO THIS NEXT
 - [ ] Optionally cost time or resources.                                       <------ DO THIS NEXT
-- [ ] Print progress so the player can see improvement.                        <------ DO THIS NEXT
+- [X] Print progress so the player can see improvement.                        <------ DO THIS NEXT
 
 ### `explore()`
 - [ ] Randomly generate exploration outcomes:

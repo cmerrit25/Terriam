@@ -107,7 +107,7 @@ class Miniboss():
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
             damage /= 2
         self.health -= damage
-        
+
     def get_move_damage(self):
         return random.choice(list(self.moves.values()))
 
@@ -201,7 +201,7 @@ class Player:
     def get_move_damage(self):
         return random.choice(list(self.moves.values()))
     
-    def take_damage(self, enemy: Miniboss | Boss , damage):
+    def take_damage(self, enemy: Miniboss | Boss , damage: int):
         player_death = False
         if self.defense >= enemy.pierce:                    #  <----------- need to add pierce to enemy classes
             damage /= 2
