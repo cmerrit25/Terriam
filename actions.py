@@ -10,7 +10,7 @@ from classes import GameState, Player, Boss, Miniboss
 
 # defines possible findings on explore action
 def explore(gamestate: GameState):
-
+    # possible things to find on explore
     findings = {
         "item": get_item(),
         "small_enemy": get_small_enemy(),
@@ -19,10 +19,14 @@ def explore(gamestate: GameState):
         "boss": get_boss()
     }
 
+    # choosing a random object type
     find_options = ["item", "small_enemy", "large_enemy", "miniboss", "boss"]
     explore = random.randint(0, len(find_options) - 1)
 
+    # object found 
     found = findings[find_options[explore]]
+
+    # prompting player if they want to interact with the found object
     plyr_choice(found, find_options[explore], gamestate)
 
 # adjust player object on item find

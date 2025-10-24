@@ -15,8 +15,10 @@ def game():
     # Game Loop
     # prompt the user for an action
     while True:
+        # available action choices
         action_choices = ["fight", "explore", "train", "f", "e", "t"]
 
+        # prompt the user for an action choice
         action_msg = "Explore? Train? Fight mini-boss? Fight boss?\n"
         user_choice = ""
         while True:
@@ -34,9 +36,14 @@ def game():
             if user_choice == "fight" or user_choice == "f":
                 # spawn enemy based on player stats/level
                 enemy = ""
+
+                # fight returns whether player lost or won
                 player_win = fight(enemy, game_state)
+
+                # break if player lost
                 if not player_win:
                     print(f"The player lost to {enemy}\n")
+                    break
 
             # print game state
             print(game_state)
