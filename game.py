@@ -53,12 +53,11 @@ def game():
 
             # if user wants to explore
             elif user_choice == "explore" or user_choice == "e":
-                pass
+                explore(game_state)
 
             # if user wants to train
             elif user_choice == "train" or user_choice == "t":
-                pass
-
+                train(game_state)
 
             # print game state
             print(game_state)
