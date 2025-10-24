@@ -59,6 +59,7 @@ class Colossus(Boss):
 
         # super init module to access parent init variables
         super().__init__()
+        self.name = "Colossus the Penetrator"
         self.health = int(self.health * self.MULT["health"])
         self.armor  = int(self.armor * self.MULT["armor"])
         self.speed  = int(self.speed * self.MULT["speed"])
@@ -81,6 +82,7 @@ class Vrolux(Boss):
     MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
     def __init__(self):
         super().__init__()
+        self.name = "Vrolux the Penetrator"
         self.health = int(self.health * self.MULT["health"])
         self.armor  = int(self.armor * self.MULT["armor"])
         self.speed  = int(self.speed * self.MULT["speed"])
@@ -116,6 +118,7 @@ class Sentry(Miniboss):
 
     def __init__(self):
         super().__init__()
+        self.name = "Sentry the Penetrator"
         self.health = int(self.health * self.MULT["health"])
         self.armor  = int(self.armor * self.MULT["armor"])
         self.speed  = int(self.speed * self.MULT["speed"])
@@ -135,6 +138,7 @@ class Reaver(Miniboss):
     MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
     def __init__(self):
         super().__init__()
+        self.name = "Reaver the Penetrator"
         self.health = int(self.health * self.MULT["health"])
         self.armor  = int(self.armor * self.MULT["armor"])
         self.speed  = int(self.speed * self.MULT["speed"])

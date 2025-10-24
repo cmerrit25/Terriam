@@ -42,9 +42,15 @@ def game():
 
                 # break if player lost
                 if not player_win:
-                    print(f"The player lost to {enemy}\n")
+                    print(f"The player lost to {enemy.name}\n")
                     break
-
+                else:
+                    print(f"The player defeated {enemy.name}\n")
+                    for _ in range(2):
+                        lvl_xp = game_state.player.calc_lvl_cost()
+                        game_state.player.gain_xp(lvl_xp)
+                    print(f"The player has been rewarded with two levels!")
+                    
             # print game state
             print(game_state)
 
