@@ -58,7 +58,7 @@ def fight(enemy: Miniboss | Boss, gamestate: GameState):
     print(gamestate.player)
     while True:
         player_move = gamestate.player.get_move_damage()
-        enemy_move = ""
+        enemy_move = enemy.get_move_damage
         if gamestate.player.speed >= enemy.speed:
             enemy.take_damage(player_move.damage)
             if check_for_death(enemy):

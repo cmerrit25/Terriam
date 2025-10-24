@@ -47,6 +47,9 @@ class Boss:
             damage /= 2
         self.health -= damage
 
+    def get_move_damage(self):
+        return random.choice(list(self.moves.values()))
+
 class Colossus(Boss):
 
     MULT = {"health": 2.0, "armor": 2.0, "speed": .5, "attack": 1.5}
@@ -100,8 +103,13 @@ class Miniboss():
         self.speed = 50
         self.attack = 100
 
-    def take_damage(self, damage):
+    def take_damage(self, enemy, damage):
+        if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
+            damage /= 2
         self.health -= damage
+        
+    def get_move_damage(self):
+        return random.choice(list(self.moves.values()))
 
 class Sentry(Miniboss):
     MULT = {"health": 2.0, "armor": 2.0, "speed": .5, "attack": 1.5}
@@ -186,7 +194,7 @@ class Player:
 
     def __str__(self):
         stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}\n"
-        lvl_data = f"The player is level {self.level} and needs {self.calc_lvl_cost} to get to level {self.level + 1}!\n"
+        lvl_data = f"The player is level {self.level} and needs {self.calc_lvl_cost()} to get to level {self.level + 1}!\n"
         return f"{stats}{lvl_data}"
     
     # return a random move's damage from the list of player moves
