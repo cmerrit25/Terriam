@@ -292,11 +292,7 @@ class Player:
         
         print(f"{self.name} has leveled up! Their new level is now {self.level}!")
 
-    def level_up(self, levels) -> None:
-        for _ in range(levels):
-            xp_needed = self.calc_lvl_cost()
-            self.gain_xp(xp_needed)
-        return
+    
 
 # collection of current game instance information
 class GameState:
