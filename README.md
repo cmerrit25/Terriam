@@ -52,7 +52,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 ### Nemesis
 - [ ] Store nemesis-specific attributes (motivation, level scaling, or story links).  <------ DO THIS NEXT
 - [ ] Tie progression or difficulty increases to nemesis development.                 <------ DO THIS NEXT
-
+` 
 ### Boss and Minibosses
 - [X] Centralize base stats in parent classes (`Boss`, `Miniboss`).  
 - [X] Keep multipliers in child classes (`Colossus`, `Vrolux`, `Sentry`, `Reaver`).  

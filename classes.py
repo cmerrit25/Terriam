@@ -279,7 +279,7 @@ class Player:
             stat *= 1.1
 
     # check if level up is needed
-    def level_up(self):
+    def check_level_up(self):
         lvl_up_xp = self.calc_lvl_cost()
         
         while self.xp >= lvl_up_xp:
@@ -291,6 +291,12 @@ class Player:
             lvl_up_xp = self.calc_lvl_cost()
         
         print(f"{self.name} has leveled up! Their new level is now {self.level}!")
+
+    def level_up(self, levels) -> None:
+        for _ in range(levels):
+            xp_needed = self.calc_lvl_cost()
+            self.gain_xp(xp_needed)
+        return
 
 # collection of current game instance information
 class GameState:
