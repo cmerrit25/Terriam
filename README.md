@@ -28,7 +28,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
   - Reduce health accordingly.  
   - Print results each round.  
 - [X] End when someone reaches 0 health.  
-- [ ] Reward XP or loot if the player wins.
+- [X] Reward XP or loot if the player wins.
 
 ### `train()`
 - [X] Increment player stats such as health, attack, armor, or speed.          <------ DO THIS NEXT
