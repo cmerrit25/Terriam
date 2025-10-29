@@ -45,7 +45,7 @@ def game():
                     print(f"The player lost to {enemy.name}\n")
                     break
                 else:
-                    print(f"The player defeated {enemy.name}\n"
+                    print(f"The player defeated {enemy.name}\n")
 
             # if user wants to explore
             elif user_choice == "explore" or user_choice == "e":
