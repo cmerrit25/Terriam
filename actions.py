@@ -69,6 +69,7 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState):
         if gamestate.player.speed >= enemy.speed:
             enemy.take_damage(player_move.damage)
             if check_for_death(enemy):
+                gamestate.player.level_up(5)
                 return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
             if gamestate.player.evasion > 0:                                                
                 ran_int = random.randint(0, gamestate.player.evasion)
@@ -89,6 +90,7 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState):
                         return False
             enemy.take_damage(player_move)
             if check_for_death(enemy):
+                gamestate.player.level_up(5)
                 return True
 
 # checking for full hp loss of a person/enemy
