@@ -222,6 +222,7 @@ class Player:
             "palm strike": self.attack * .4
         }
 
+        self.energy = 3
     # getter for player name
     @property
     def name(self):
@@ -290,7 +291,10 @@ class Player:
 
             lvl_up_xp = self.calc_lvl_cost()
         
-        print(f"{self.name} has leveled up! Their new level is now {self.level}!")
+        print(f"{self.name} has leveled up! Their new level is now {self.level}!\n")
+
+    def drain_energy(self):
+        pass 
 
     
 

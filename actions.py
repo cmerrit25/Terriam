@@ -46,17 +46,24 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState):
 # rudimentary, need to insert minigame or something to reward on success with training xp
 def train(gamestate: GameState) -> None:
     # always give a 4th of a level per training
-    train_xp = gamestate.player.calc_lvl_cost() / 4
+    if gamestate.player.energy > 0:
+        prompt = input("You have {gamestate.player.energy} energy left. Do you want to spend an energy to train?\n").lower()
+        if prompt == "yes" or prompt == "y":
+            gamestate.player.drain_energy
 
-    starting_xp = gamestate.player.xp
-    gamestate.player.gain_xp(train_xp)
-    ending_xp = gamestate.player.xp
+            train_xp = gamestate.player.calc_lvl_cost() / 4
 
-    xp_gained = ending_xp - starting_xp
+            starting_xp = gamestate.player.xp
+            gamestate.player.gain_xp(train_xp)
+            ending_xp = gamestate.player.xp
 
-    print(f"The player gained {xp_gained} xp from training.")
-    return
+            xp_gained = ending_xp - starting_xp
 
+            print(f"The player gained {xp_gained} xp from training.")
+            return
+
+    else:
+        pass
 # adjust player object on fight action, right now moves are random but should be selected by user
 def fight(enemy: Miniboss | Boss , gamestate: GameState):
     # print enemy health
