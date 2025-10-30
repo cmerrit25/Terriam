@@ -73,6 +73,8 @@ class Nemesis:
         self.evasion = 10
         self.pierce = 10
 
+        self.combat_power = self.attack + self.defense + self.speed + self.health + self.evasion + self.pierce
+
     # getter for nemesis name
     @property
     def name(self) -> str:
@@ -229,6 +231,10 @@ class Player:
             "palm strike": self.attack * .4
         }
 
+        self.combat_power = self.attack + self.defense + self.speed + self.speed + self.health + self.evasion + self.pierce
+
+
+
         self.energy = 3
         self.energy_max = 3
     # getter for player name
@@ -287,8 +293,9 @@ class Player:
     
     # scale stats by 10 percent
     def scale_stats(self) -> float:
-        for stat in self.get_stats():
-            stat *= 1.1
+        for attr in ("attack", "defense", "speed", "health", "evasion", "pierce"):
+            setattr(self, attr, int(getattr(self, attr) * 1.1))
+
         self.energy_max += 1
         self.energy = self.energy_max
         return
@@ -317,6 +324,13 @@ class Player:
     def drain_energy(self) -> None:
         self.energy -= 1
         return
+    
+    def __eq__(self, nemesis: Nemesis) -> bool:
+        if self.combat_power == nemesis.combat_power:
+            return True
+        return False
+    
+
 
     
 
