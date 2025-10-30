@@ -100,6 +100,7 @@ class Boss:
             damage /= 2
         self.health -= damage
         print(f"{enemy.name} dealt {damage} damage to {self.name}")
+        return
 
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
@@ -164,6 +165,7 @@ class Miniboss():
             damage /= 2
         self.health -= damage
         print(f"{enemy.name} dealt {damage} damage to {self.name}")
+        return
 
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
@@ -231,13 +233,14 @@ class Player:
         self.energy_max = 3
     # getter for player name
     @property
-    def name(self):
+    def name(self) -> str:
         return self._name
     
     # setter for player name
     @name.setter
-    def name(self, value):
+    def name(self, value) -> None:
         self._name = value
+        return
     
     # getter for player stats
     @property
@@ -276,6 +279,7 @@ class Player:
     def gain_xp(self, xp_gained) -> None:
         self.xp += xp_gained
         self.check_level_up()
+        return
 
     # calc xp cost to lelel up
     def calc_lvl_cost(self) -> int:
@@ -287,6 +291,7 @@ class Player:
             stat *= 1.1
         self.energy_max += 1
         self.energy = self.energy_max
+        return
 
     # check if level up is needed
     def check_level_up(self) -> None:
@@ -301,6 +306,7 @@ class Player:
             lvl_up_xp = self.calc_lvl_cost()
         
         print(f"{self.name} has leveled up! Their new level is now {self.level}!\n")
+        return
     
     def level_up(self, levels) -> None:
         for _ in range(levels):

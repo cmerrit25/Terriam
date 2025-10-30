@@ -88,6 +88,8 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
             if check_for_death(enemy):
                 gamestate.player.level_up(5)
                 return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
+            
+            # evasion/dodge calc
             if gamestate.player.evasion > 0:                                                
                 ran_int = random.randint(0, gamestate.player.evasion)
                 if ran_int <= gamestate.player.evasion:
@@ -99,6 +101,7 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
                     
         # the enemy hits and then the player hits
         else:
+            # evasion/dodge calc
             if gamestate.player.evasion > 0:                                                # <----- condense this logic into a function maybe?
                 ran_int = random.randint(0, gamestate.player.evasion)
                 if ran_int <= gamestate.player.evasion:
