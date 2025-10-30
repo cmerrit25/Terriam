@@ -1,9 +1,16 @@
-# Terriam
+# Terriam RPG
 
-Terriam is a solo-player RPG that revolves decisive actions, random encounters, training, and enticing combat.
+> A solo-player RPG that revolves decisive actions, random encounters, training, and 
+> enticing combat.
 
-## Core Game Loop
+---
+## Over-arching Ideas
 
+Combining the combat system of Pokemon with the exploration and power building/scaling of Terraria.
+
+## Features
+
+- **Game Loop**
 - [X] Add a main loop in `game()` that ends on quit or player death.  
   - Print the current situation each turn.  
     - Need to give each class __str__ function.
@@ -18,7 +25,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
   - Accept only listed commands, reprompt otherwise.  
   - Optionally allow shortcuts (`f`, `t`, `e`, `q`).
 
-## Actions (`actions.py`)
+- **Actions (`actions.py`)** 
 
 ### `fight()`
 - [ ] Decide what can be fought (miniboss or boss).  
@@ -42,7 +49,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
   - Discover story events or locations.  
 - [ ] Use small tables or weighted probabilities for variety.
 
-## Classes (`classes.py`)
+- **Classes (`classes.py`)**
 
 ### Player
 - [X] Add base stats (`health`, `attack`, `armor`, `speed`, `xp`, `level`).  
