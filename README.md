@@ -32,7 +32,7 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 
 ### `train()`
 - [X] Increment player stats such as health, attack, armor, or speed.          <------ DO THIS NEXT
-- [ ] Optionally cost time or resources.                                       <------ DO THIS NEXT
+- [X] Optionally cost time or resources.                                       <------ DO THIS NEXT
 - [X] Print progress so the player can see improvement.                        <------ DO THIS NEXT
 
 ### `explore()`
