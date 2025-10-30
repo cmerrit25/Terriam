@@ -1,6 +1,8 @@
 """
 This is a rudimentary implementation of action classes to allow the player/user to make moves during the game. 
 Currently limited to explore, fight and train. Need to improve readability with proper variable naming.
+
+Need to implement player move selection.
 """
 
 
@@ -71,9 +73,16 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
     print(f"{enemy.name}'s HP: {enemy.health}")
     # print player health
     print(f"{gamestate.player.name}'s HP: {gamestate.player.health}")
+
+    # player and enemy fight until one dies
     while True:
+        # grab player move name and damage
         player_move, player_damage = gamestate.player.get_move_damage()
+
+        # grab enemy move name and damage
         enemy_move, enemy_damage = enemy.get_move_damage()
+
+        # the player hits and then enemy hits
         if gamestate.player.speed >= enemy.speed:
             enemy.take_damage(gamestate.player, player_damage)
             if check_for_death(enemy):
@@ -87,6 +96,8 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
                     gamestate.player.take_damage(enemy, enemy_damage)
                     if check_for_death(gamestate.player):
                         return False
+                    
+        # the enemy hits and then the player hits
         else:
             if gamestate.player.evasion > 0:                                                # <----- condense this logic into a function maybe?
                 ran_int = random.randint(0, gamestate.player.evasion)
