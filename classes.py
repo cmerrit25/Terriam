@@ -9,6 +9,7 @@ Need to make sure that balancing feels good as well.
 """
 
 import math, random
+from typing import List, Dict
 
 class Small_Enemy:
     def __init__(self):
@@ -17,12 +18,12 @@ class Small_Enemy:
         self.speed = 5
         self.attack = 10
         
-    def take_damage(self, enemy, damage):
+    def take_damage(self, enemy, damage) -> None:
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
             damage /= 2
         self.health -= damage
 
-    def get_move_damage(self):
+    def get_move_damage(self) -> float:
         return random.choice(list(self.moves.values()))
     
 class Slime(Small_Enemy):
@@ -42,12 +43,12 @@ class Large_Enemy:
         self.speed = 10
         self.attack = 20
 
-    def take_damage(self, enemy, damage):
+    def take_damage(self, enemy, damage) -> None:
         if enemy.pierce < self.armor:
             damage /= 2
         self.health -= damage
 
-    def get_move_damage(self):
+    def get_move_damage(self) -> float:
         return random.choice(list(self.moves.values()))
     
 class Ogre(Large_Enemy):
@@ -61,7 +62,7 @@ class Ogre(Large_Enemy):
         }
     
 class Nemesis:
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
         self.attack = 25
         self.defense = 10
@@ -72,15 +73,15 @@ class Nemesis:
 
     # getter for nemesis name
     @property
-    def name(self):
+    def name(self) -> str:
         return self._name
     
     # setter for nemesis name
     @name.setter
-    def name(self, value):
+    def name(self, value) -> None:
         self._name = value
 
-    def __str__(self):
+    def __str__(self) -> str:
         stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}\n"
         return stats
 
@@ -92,12 +93,12 @@ class Boss:
         self.speed = 100
         self.attack = 200
         
-    def take_damage(self, enemy, damage):
+    def take_damage(self, enemy, damage) -> None:
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
             damage /= 2
         self.health -= damage
 
-    def get_move_damage(self):
+    def get_move_damage(self) -> float:
         return random.choice(list(self.moves.values()))
 
 class Colossus(Boss):
@@ -122,7 +123,7 @@ class Colossus(Boss):
     def __str__(self):
         return f"Colossus HP: {self.health}"
     
-    def get_move_damage(self):
+    def get_move_damage(self) -> float:
         return random.choice(list(self.moves.values()))
     
 
@@ -142,10 +143,10 @@ class Vrolux(Boss):
             "Vortex Blitz": self.attack * .3
         }
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Vrolux HP: {self.health}"
     
-    def get_move_damage(self):
+    def get_move_damage(self) -> float:
         return random.choice(list(self.moves.values()))
 
 class Miniboss():
@@ -155,12 +156,12 @@ class Miniboss():
         self.speed = 50
         self.attack = 100
 
-    def take_damage(self, enemy, damage):
+    def take_damage(self, enemy, damage) -> None:
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
             damage /= 2
         self.health -= damage
 
-    def get_move_damage(self):
+    def get_move_damage(self) -> float:
         return random.choice(list(self.moves.values()))
 
 class Sentry(Miniboss):
@@ -178,10 +179,10 @@ class Sentry(Miniboss):
             "Grounding Crush": self.attack * .3
         }
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Sentry HP: {self.health}"
     
-    def get_move_damage(self):
+    def get_move_damage(self) -> float:
         return random.choice(list(self.moves.values()))
     
 class Reaver(Miniboss):
@@ -198,10 +199,10 @@ class Reaver(Miniboss):
             "Wrath Slash": self.attack * .3
         }
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Reaper HP: {self.health}"
     
-    def get_move_damage(self):
+    def get_move_damage(self) -> List:
         return random.choice(list(self.moves.values()))
     
 
@@ -235,7 +236,7 @@ class Player:
     
     # getter for player stats
     @property
-    def get_stats(self):
+    def get_stats(self) -> Dict:
         return {
             "attack": self.attack,
             "defense": self.defense,
@@ -247,7 +248,7 @@ class Player:
             "xp": self.xp
         }
 
-    def __str__(self):
+    def __str__(self) -> str:
         stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}\n"
         lvl_data = f"The player is level {self.level} and needs {self.calc_lvl_cost()} to get to level {self.level + 1}!\n"
         return f"{stats}{lvl_data}"
@@ -256,7 +257,7 @@ class Player:
     def get_move_damage(self):
         return random.choice(list(self.moves.values()))
     
-    def take_damage(self, enemy: Miniboss | Boss , damage: int):
+    def take_damage(self, enemy: Miniboss | Boss , damage: int) -> bool:
         player_death = False
         if self.defense >= enemy.pierce:                    #  <----------- need to add pierce to enemy classes
             damage /= 2
@@ -266,21 +267,21 @@ class Player:
         return player_death
 
     # gain xp then check if level up is needed
-    def gain_xp(self, xp_gained):
+    def gain_xp(self, xp_gained) -> None:
         self.xp += xp_gained
         self.level_up()
 
     # calc xp cost to lelel up
-    def calc_lvl_cost(self):
+    def calc_lvl_cost(self) -> int:
         return 10 * math.pow(2, self.level - 1)
     
     # scale stats by 10 percent
-    def scale_stats(self):
+    def scale_stats(self) -> float:
         for stat in self.stats.values():
             stat *= 1.1
 
     # check if level up is needed
-    def check_level_up(self):
+    def check_level_up(self) -> None:
         lvl_up_xp = self.calc_lvl_cost()
         
         while self.xp >= lvl_up_xp:
@@ -321,7 +322,7 @@ class GameState:
             self.mboss_two = mboss_two
 
     # print relevant gamestate information to console
-    def __str__(self):
+    def __str__(self) -> str:
         player_stats = str(self.player)
         nemesis_stats = str(self.nemesis)
         plyr_boss_prog = f"The player has defeated {len(self.bosses_defeated)} boss(es).\n"

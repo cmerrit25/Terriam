@@ -9,7 +9,7 @@ import random
 from classes import GameState, Player, Boss, Miniboss
 
 # defines possible findings on explore action
-def explore(gamestate: GameState):
+def explore(gamestate: GameState) -> None:
     # possible things to find on explore
     findings = {
         "item": get_item(),
@@ -30,7 +30,7 @@ def explore(gamestate: GameState):
     plyr_choice(found, find_options[explore], gamestate)
 
 # adjust player object on item find
-def plyr_choice(item_found, item_type: str, gamestate: GameState):
+def plyr_choice(item_found, item_type: str, gamestate: GameState) -> None:
     if item_type == "item":
         print(f"{item_found} was found!\n")
         print(item_found)
@@ -40,8 +40,8 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState):
             # gamestate.equip_item(item_found)
             pass
         else:
-            print(f"{item_found} was not equipped...")
-
+            print(f"{item_found} was not equipped...")                                              
+                                                                                    # <------ need to add other options here
 # adjust player object on train action
 # rudimentary, need to insert minigame or something to reward on success with training xp
 def train(gamestate: GameState) -> None:
@@ -65,7 +65,7 @@ def train(gamestate: GameState) -> None:
     else:
         pass
 # adjust player object on fight action, right now moves are random but should be selected by user
-def fight(enemy: Miniboss | Boss , gamestate: GameState):
+def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
     # print enemy health
     print(f"{enemy.name}'s HP: {enemy.health}")
     # print player health
@@ -101,7 +101,7 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState):
                 return True
 
 # checking for full hp loss of a person/enemy
-def check_for_death(entity: Player | Miniboss | Boss):
+def check_for_death(entity: Player | Miniboss | Boss) -> bool:
     if entity.health <= 0:
         return True
     return False
