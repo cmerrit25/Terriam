@@ -47,7 +47,7 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState) -> None:
 def train(gamestate: GameState) -> None:
     # always give a 4th of a level per training
     if gamestate.player.energy > 0:
-        prompt = input("You have {gamestate.player.energy} energy left. Do you want to spend an energy to train?\n").lower()
+        prompt = input(f"You have {gamestate.player.energy} energy left. Do you want to spend an energy to train?\n").lower()
         if prompt == "yes" or prompt == "y":
             gamestate.player.drain_energy()
 
@@ -72,10 +72,10 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
     # print player health
     print(f"{gamestate.player.name}'s HP: {gamestate.player.health}")
     while True:
-        player_move = gamestate.player.get_move_damage()
-        enemy_move = enemy.get_move_damage
+        player_move, player_damage = gamestate.player.get_move_damage()
+        enemy_move, enemy_damage = enemy.get_move_damage()
         if gamestate.player.speed >= enemy.speed:
-            enemy.take_damage(player_move.damage)
+            enemy.take_damage(gamestate.player, player_damage)
             if check_for_death(enemy):
                 gamestate.player.level_up(5)
                 return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
@@ -84,7 +84,7 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
                 if ran_int <= gamestate.player.evasion:
                     print(f"{gamestate.player.name} dodged {enemy_move}")
                 else:
-                    gamestate.player.take_damage(enemy_move)
+                    gamestate.player.take_damage(enemy, enemy_damage)
                     if check_for_death(gamestate.player):
                         return False
         else:
@@ -93,10 +93,10 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
                 if ran_int <= gamestate.player.evasion:
                     print(f"{gamestate.player.name} dodged {enemy_move}")
                 else:
-                    gamestate.player.take_damage(enemy_move)
+                    gamestate.player.take_damage(enemy, enemy_damage)
                     if check_for_death(gamestate.player):
                         return False
-            enemy.take_damage(player_move)
+            enemy.take_damage(gamestate.player, player_damage)
             if check_for_death(enemy):
                 gamestate.player.level_up(5)
                 return True

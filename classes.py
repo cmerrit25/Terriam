@@ -22,9 +22,10 @@ class Small_Enemy:
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
             damage /= 2
         self.health -= damage
+        print(f"{enemy.name} dealt {damage} damage to {self.name}")
 
     def get_move_damage(self) -> float:
-        return random.choice(list(self.moves.values()))
+        return random.choice(list(self.moves.items()))
     
 class Slime(Small_Enemy):
     def __init__(self):
@@ -47,9 +48,10 @@ class Large_Enemy:
         if enemy.pierce < self.armor:
             damage /= 2
         self.health -= damage
+        print(f"{enemy.name} dealt {damage} damage to {self.name}")
 
     def get_move_damage(self) -> float:
-        return random.choice(list(self.moves.values()))
+        return random.choice(list(self.moves.items()))
     
 class Ogre(Large_Enemy):
     def __init__(self):
@@ -97,9 +99,10 @@ class Boss:
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
             damage /= 2
         self.health -= damage
+        print(f"{enemy.name} dealt {damage} damage to {self.name}")
 
     def get_move_damage(self) -> float:
-        return random.choice(list(self.moves.values()))
+        return random.choice(list(self.moves.items()))
 
 class Colossus(Boss):
 
@@ -124,7 +127,7 @@ class Colossus(Boss):
         return f"Colossus HP: {self.health}"
     
     def get_move_damage(self) -> float:
-        return random.choice(list(self.moves.values()))
+        return random.choice(list(self.moves.items()))
     
 
 
@@ -147,7 +150,7 @@ class Vrolux(Boss):
         return f"Vrolux HP: {self.health}"
     
     def get_move_damage(self) -> float:
-        return random.choice(list(self.moves.values()))
+        return random.choice(list(self.moves.items()))
 
 class Miniboss():
     def __init__(self):
@@ -160,9 +163,10 @@ class Miniboss():
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
             damage /= 2
         self.health -= damage
+        print(f"{enemy.name} dealt {damage} damage to {self.name}")
 
     def get_move_damage(self) -> float:
-        return random.choice(list(self.moves.values()))
+        return random.choice(list(self.moves.items()))
 
 class Sentry(Miniboss):
     MULT = {"health": 2.0, "armor": 2.0, "speed": .5, "attack": 1.5}
@@ -183,7 +187,7 @@ class Sentry(Miniboss):
         return f"Sentry HP: {self.health}"
     
     def get_move_damage(self) -> float:
-        return random.choice(list(self.moves.values()))
+        return random.choice(list(self.moves.items()))
     
 class Reaver(Miniboss):
     MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
@@ -203,7 +207,7 @@ class Reaver(Miniboss):
         return f"Reaper HP: {self.health}"
     
     def get_move_damage(self) -> List:
-        return random.choice(list(self.moves.values()))
+        return random.choice(list(self.moves.items()))
     
 
 class Player:
@@ -256,7 +260,7 @@ class Player:
     
     # return a random move's damage from the list of player moves
     def get_move_damage(self):
-        return random.choice(list(self.moves.values()))
+        return random.choice(list(self.moves.items()))
     
     def take_damage(self, enemy: Miniboss | Boss , damage: int) -> bool:
         player_death = False
@@ -265,12 +269,13 @@ class Player:
         self.health -= damage
         if self.health <= 0:
             player_death = True
+        print(f"{enemy.name} dealt {damage} damage to {self.name}")
         return player_death
 
     # gain xp then check if level up is needed
     def gain_xp(self, xp_gained) -> None:
         self.xp += xp_gained
-        self.level_up()
+        self.check_level_up()
 
     # calc xp cost to lelel up
     def calc_lvl_cost(self) -> int:
@@ -278,7 +283,7 @@ class Player:
     
     # scale stats by 10 percent
     def scale_stats(self) -> float:
-        for stat in self.stats.values():
+        for stat in self.get_stats():
             stat *= 1.1
         self.energy_max += 1
         self.energy = self.energy_max
