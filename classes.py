@@ -224,6 +224,7 @@ class Player:
         }
 
         self.energy = 3
+        self.energy_max = 3
     # getter for player name
     @property
     def name(self):
@@ -279,6 +280,8 @@ class Player:
     def scale_stats(self) -> float:
         for stat in self.stats.values():
             stat *= 1.1
+        self.energy_max += 1
+        self.energy = self.energy_max
 
     # check if level up is needed
     def check_level_up(self) -> None:
@@ -300,8 +303,9 @@ class Player:
             self.gain_xp(xp_needed)
         return
 
-    def drain_energy(self):
-        pass 
+    def drain_energy(self) -> None:
+        self.energy -= 1
+        return
 
     
 

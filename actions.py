@@ -49,7 +49,7 @@ def train(gamestate: GameState) -> None:
     if gamestate.player.energy > 0:
         prompt = input("You have {gamestate.player.energy} energy left. Do you want to spend an energy to train?\n").lower()
         if prompt == "yes" or prompt == "y":
-            gamestate.player.drain_energy
+            gamestate.player.drain_energy()
 
             train_xp = gamestate.player.calc_lvl_cost() / 4
 
@@ -59,11 +59,12 @@ def train(gamestate: GameState) -> None:
 
             xp_gained = ending_xp - starting_xp
 
-            print(f"The player gained {xp_gained} xp from training.")
+            print(f"The player gained {xp_gained} xp from training.\n")
             return
 
     else:
-        pass
+        print(f"{gamestate.player.name} is out of energy! Please wait until level up for a refresh...\n")
+        return
 # adjust player object on fight action, right now moves are random but should be selected by user
 def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
     # print enemy health

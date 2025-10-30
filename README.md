@@ -79,5 +79,5 @@ Terriam is a solo-player RPG that revolves decisive actions, random encounters, 
 ## Extensibility
 
 - [ ] Plan future systems early (inventory, skills, quests).                          <------- DO THIS NEXT
-- [ ] Use type hints to improve readability and editor support.                       <------- DO THIS NEXT
+- [X] Use type hints                    
 - [ ] Document each new class or function as it’s added.
