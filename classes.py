@@ -24,7 +24,7 @@ class Small_Enemy:
         self.health -= damage
         print(f"{enemy.name} dealt {damage} damage to {self.name}")
 
-    def get_move_damage(self) -> float:
+    def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
 class Slime(Small_Enemy):
@@ -50,7 +50,7 @@ class Large_Enemy:
         self.health -= damage
         print(f"{enemy.name} dealt {damage} damage to {self.name}")
 
-    def get_move_damage(self) -> float:
+    def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
 class Ogre(Large_Enemy):
@@ -101,7 +101,7 @@ class Boss:
         self.health -= damage
         print(f"{enemy.name} dealt {damage} damage to {self.name}")
 
-    def get_move_damage(self) -> float:
+    def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
 
 class Colossus(Boss):
@@ -126,7 +126,7 @@ class Colossus(Boss):
     def __str__(self):
         return f"Colossus HP: {self.health}"
     
-    def get_move_damage(self) -> float:
+    def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
 
@@ -149,7 +149,7 @@ class Vrolux(Boss):
     def __str__(self) -> str:
         return f"Vrolux HP: {self.health}"
     
-    def get_move_damage(self) -> float:
+    def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
 
 class Miniboss():
@@ -165,7 +165,7 @@ class Miniboss():
         self.health -= damage
         print(f"{enemy.name} dealt {damage} damage to {self.name}")
 
-    def get_move_damage(self) -> float:
+    def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
 
 class Sentry(Miniboss):
@@ -186,7 +186,7 @@ class Sentry(Miniboss):
     def __str__(self) -> str:
         return f"Sentry HP: {self.health}"
     
-    def get_move_damage(self) -> float:
+    def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
 class Reaver(Miniboss):
@@ -206,7 +206,7 @@ class Reaver(Miniboss):
     def __str__(self) -> str:
         return f"Reaper HP: {self.health}"
     
-    def get_move_damage(self) -> List:
+    def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
 
@@ -259,7 +259,7 @@ class Player:
         return f"{stats}{lvl_data}"
     
     # return a random move's damage from the list of player moves
-    def get_move_damage(self):
+    def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
     def take_damage(self, enemy: Miniboss | Boss , damage: int) -> bool:
