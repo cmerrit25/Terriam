@@ -67,6 +67,7 @@ def train(gamestate: GameState) -> None:
     else:
         print(f"{gamestate.player.name} is out of energy! Please wait until level up for a refresh...\n")
         return
+    
 # adjust player object on fight action, right now moves are random but should be selected by user
 def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
     # print enemy health

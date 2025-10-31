@@ -351,11 +351,12 @@ class Player:
 
 # collection of current game instance information
 class GameState:
-    def __init__(self, player: Player, nemesis: Nemesis, boss_one=None, boss_two=None, mboss_one=None, mboss_two=None):
+    def __init__(self, player: Player, nemesis: Nemesis, boss_one=None, boss_two=None, mboss_one=None, mboss_two=None, enemies=None):
         self.player = player
         self.nemesis = nemesis
         self.progress = 0
         self.bosses_defeated = []
+        self.enemies = enemies
         if boss_one:
             self.boss_one = boss_one
         if boss_two:
@@ -375,6 +376,11 @@ class GameState:
         else:
             comp_strength = "The player is currently weaker than the nemesis...\n"
         return f"{player_stats}{nemesis_stats}{plyr_boss_prog}{comp_strength}"
+    
+    def get_random_enemy(self) -> Boss | Miniboss | Large_Enemy | Small_Enemy:
+        enemy_type = random.choice(self.enemies)
+        enemy = random.choice(enemy_type)
+        return enemy
     
     # adjust player stats from item equip
     # def equip_item(self, item):

@@ -35,7 +35,7 @@ def game():
             # check if the player is high enough level to fight regular enemy, miniboss, or boss. Spawn enemy accordingly
             if user_choice == "fight" or user_choice == "f":
                 # spawn enemy based on player stats/level, right now spawn a boss
-                enemy = game_state.boss_one
+                enemy = game_state.get_random_enemy()
 
                 # fight returns whether player lost or won
                 player_win = fight(enemy, game_state)
