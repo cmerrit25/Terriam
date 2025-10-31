@@ -46,6 +46,14 @@ def spawn_enemies():
     minibosses = [sentry, reaver]
     enemies["minibosses"] = minibosses
 
+    ogre = Ogre()
+    large_enemies = [ogre]
+    enemies["large_enemies"] = large_enemies
+
+    slime = Slime()
+    small_enemies = [slime]
+    enemies["small_enemies"] = small_enemies
+    
     return colosuss, vrolux, sentry, reaver, enemies
 
 # spawn random item
