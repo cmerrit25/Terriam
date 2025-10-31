@@ -87,6 +87,8 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
             enemy.take_damage(gamestate.player, player_damage)
             if check_for_death(enemy):
                 gamestate.player.level_up(5)
+                if isinstance(enemy, Boss):
+                    gamestate.bosses_defeated.append(enemy)
                 return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
             
             # evasion/dodge calc
@@ -113,6 +115,8 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
             enemy.take_damage(gamestate.player, player_damage)
             if check_for_death(enemy):
                 gamestate.player.level_up(5)
+                if isinstance(enemy, Boss):
+                    gamestate.bosses_defeated.append(enemy)
                 return True
 
 # checking for full hp loss of a person/enemy

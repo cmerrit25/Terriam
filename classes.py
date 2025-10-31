@@ -325,11 +325,20 @@ class Player:
         self.energy -= 1
         return
     
-    def __eq__(self, nemesis: Nemesis) -> bool:
-        if self.combat_power == nemesis.combat_power:
+    def __eq__(self, other: Nemesis) -> bool:
+        if self.combat_power == other.combat_power:
             return True
         return False
     
+    def __gt__(self, other: Nemesis) -> bool:
+        if self.combat_power > other.combat_power:
+            return True
+        return False 
+    
+    def __lt__(self, other: Nemesis) -> bool:
+        if self.combat_power < other.combat_power:
+            return True
+        return False
 
 
     
