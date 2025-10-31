@@ -77,7 +77,25 @@ def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
     # player and enemy fight until one dies
     while True:
         # grab player move name and damage
-        player_move, player_damage = gamestate.player.get_move_damage()
+
+        gamestate.player.show_moves()
+        # prompt player for choose move from moveset, make sure moves have PP
+    
+        while True:
+            print("Please choose a move\n")
+
+            move_choice = input()
+
+            if move_choice not in gamestate.player.moves.keys():    
+
+                print("That's not a valid move choice. Please choose again...\n")
+            
+            else:
+                break
+
+
+
+        player_move, player_damage = gamestate.player.get_move_damage(move_choice)
 
         # grab enemy move name and damage
         enemy_move, enemy_damage = enemy.get_move_damage()
