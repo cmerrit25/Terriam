@@ -407,3 +407,5 @@ class GameState:
         elif isinstance(enemy, Small_Enemy):
             self.player.level_up(1)
             self.player.add_energy(1)
+
+        return
