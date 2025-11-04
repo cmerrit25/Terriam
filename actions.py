@@ -33,16 +33,26 @@ def explore(gamestate: GameState) -> None:
 
 # adjust player object on item find
 def plyr_choice(item_found, item_type: str, gamestate: GameState) -> None:
-    if item_type == "item":
-        print(f"{item_found} was found!\n")
-        print(item_found)
-        choice = input(f"Do you want to keep and equip {item_found}?\n").lower()
-        if choice == "yes" or "y":
-            # need to implement items class
-            # gamestate.equip_item(item_found)
+    match item_type:
+        case "item":
+            print(f"{item_found} was found!\n")
+            print(item_found)
+            choice = input(f"Do you want to keep and equip {item_found}?\n").lower()
+            if choice == "yes" or "y":
+                # need to implement items class
+                # gamestate.equip_item(item_found)
+                pass
+            else:
+                print(f"{item_found} was not equipped...")  
+
+        case "small_enemy":
             pass
-        else:
-            print(f"{item_found} was not equipped...")                                              
+        case "large_enemy":
+            pass
+        case "miniboss":
+            pass
+        case "boss":
+            pass                                          
                                                                                     # <------ need to add other options here
 # adjust player object on train action
 # rudimentary, need to insert minigame or something to reward on success with training xp
