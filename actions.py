@@ -140,6 +140,7 @@ def check_for_death(entity: Player | Miniboss | Boss) -> bool:
         return True
     return False
 
+# could factor out evasion calculation logic
 def evasion_calc(gamestate: GameState):
     pass
     
