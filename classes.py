@@ -277,6 +277,10 @@ class Player:
     def get_move_damage(self, move) -> tuple[str, float]:
         return (move, self.moves[move])
     
+    def add_energy(self, energy: int) -> None:
+        self.energy += energy
+        return 
+    
     def take_damage(self, enemy: Miniboss | Boss , damage: int) -> bool:
         player_death = False
         if self.defense >= enemy.pierce:                    #  <----------- need to add pierce to enemy classes
@@ -392,10 +396,14 @@ class GameState:
     def defeat_enemy(self, enemy: Boss | Miniboss | Large_Enemy | Small_Enemy) -> None:
         if isinstance(enemy, Boss):
             self.player.level_up(5)
+            self.player.add_energy(5)
             self.bosses_defeated.append(enemy)
         elif isinstance(enemy, Miniboss):
             self.player.level_up(3)
+            self.player.add_energy(3)
         elif isinstance(enemy, Large_Enemy):
             self.player.level_up(2)
+            self.player.add_energy(2)
         elif isinstance(enemy, Small_Enemy):
             self.player.level_up(1)
+            self.player.add_energy(1)
