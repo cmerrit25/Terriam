@@ -10,7 +10,7 @@ def game():
     colosuss, vrolux, sentry, reaver, enemies = spawn_enemies()
 
     # declare game state
-    game_state = GameState(player, nemesis, colosuss, vrolux, sentry, reaver)
+    game_state = GameState(player, nemesis, colosuss, vrolux, sentry, reaver, enemies)
 
     # Game Loop
     # prompt the user for an action

@@ -76,7 +76,7 @@ Combining the combat system of Pokemon with the exploration and power building/s
 - [X] Validate player and nemesis names (non-empty, reasonable length).  
 - [ ] Use consistent prompts and error messages.                                      <------- DO THIS NEXT
 - [ ] Print clear feedback for all actions.
-
+  
 ## Testing and Debugging
 
 - [ ] Make combat and exploration deterministic with a random seed for testing.  

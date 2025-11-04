@@ -378,7 +378,7 @@ class GameState:
         return f"{player_stats}{nemesis_stats}{plyr_boss_prog}{comp_strength}"
     
     def get_random_enemy(self) -> Boss | Miniboss | Large_Enemy | Small_Enemy:
-        enemy_type = random.choice(self.enemies)
+        enemy_type = random.choice([lst for lst in self.enemies.values()])
         enemy = random.choice(enemy_type)
         return enemy
     
@@ -388,3 +388,14 @@ class GameState:
     #     item_stats = item.get_stats()
     #     for stat in item_stats.keys():
     #         player_stats[stat] += stat
+
+    def defeat_enemy(self, enemy: Boss | Miniboss | Large_Enemy | Small_Enemy) -> None:
+        if isinstance(enemy, Boss):
+            self.player.level_up(5)
+            self.bosses_defeated.append(enemy)
+        elif isinstance(enemy, Miniboss):
+            self.player.level_up(3)
+        elif isinstance(enemy, Large_Enemy):
+            self.player.level_up(2)
+        elif isinstance(enemy, Small_Enemy):
+            self.player.level_up(1)
