@@ -277,11 +277,13 @@ class Player:
     def get_move_damage(self, move) -> tuple[str, float]:
         return (move, self.moves[move])
     
+    # add energy to player energy pool
     def add_energy(self, energy: int) -> None:
         self.energy += energy
         return 
     
-    def take_damage(self, enemy: Miniboss | Boss , damage: int) -> bool:
+    # take damage from enemy
+    def take_damage(self, enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, damage: int) -> bool:
         player_death = False
         if self.defense >= enemy.pierce:                    #  <----------- need to add pierce to enemy classes
             damage /= 2
@@ -325,7 +327,7 @@ class Player:
         print(f"{self.name} has leveled up! Their new level is now {self.level}!\n")
         return
     
-    def level_up(self, levels) -> None:
+    def level_up(self, levels: int) -> None:
         for _ in range(levels):
             xp_needed = self.calc_lvl_cost()
             self.gain_xp(xp_needed)
