@@ -278,6 +278,7 @@ class Player:
         print(f"{self.name}'s moveset:\n")
         for key, value in moves.items():
             print(f"{key}: {value} damage")
+        print("\n")
     
     # return a random move's damage from the list of player moves
     def get_move_damage(self, move) -> tuple[str, float]:

@@ -87,12 +87,14 @@ def train(gamestate: GameState) -> None:
 # adjust player object on fight action, right now moves are random but should be selected by user
 def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameState) -> bool:
     # print enemy health
-    print(f"{enemy.name}'s HP: {enemy.health}")
-    # print player health
-    print(f"{gamestate.player.name}'s HP: {gamestate.player.health}")
+   
 
     # player and enemy fight until one dies
     while True:
+
+        print(f"{enemy.name}'s HP: {enemy.health}")
+    # print player health
+        print(f"{gamestate.player.name}'s HP: {gamestate.player.health}\n")
         # grab player move name and damage
 
         gamestate.player.show_moves()
