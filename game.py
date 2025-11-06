@@ -40,14 +40,15 @@ def game():
                 # ask the player which enemy type they'd like to challenge
                 while True: 
                     print("Please choose the enemy type you'd like to fight from the following choices:")
-                    enemy_choice = input("Small enemy, Large enemy, Mini-boss, or Boss?").lower()
+                    enemy_choice = input("Small enemy, Large enemy, Mini-boss, or Boss?")
 
-                    choices = ["small enemy", "large enemy", "mini-boss", "boss"]
+                    choices ={"Small enemy": "small_enemies", "Large enemy": "large_enemies", "Mini-boss": "minibosses", "Boss": "bosses"}
 
-                    if enemy_choice not in choices:
+                    if enemy_choice not in choices.keys():
                         print("Incorrect choice...")
                     else:
-                        enemy = game_state.spawn_enemy(enemy_choice)
+                        choice = choices.get(enemy_choice)
+                        enemy = game_state.spawn_enemy(choice)
                         break
                 # spawn this enemy type then call fight with the enemy and gamestate
 
