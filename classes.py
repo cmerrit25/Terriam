@@ -9,7 +9,7 @@ Need to make sure that balancing feels good as well.
 """
 
 import math, random
-from typing import List, Dict
+from typing import Dict
 
 class Small_Enemy:
     def __init__(self):

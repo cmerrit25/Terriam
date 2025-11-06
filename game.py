@@ -34,6 +34,11 @@ def game():
 
             # check if the player is high enough level to fight regular enemy, miniboss, or boss. Spawn enemy accordingly
             if user_choice == "fight" or user_choice == "f":
+
+                # tell the player that they have entered the colosseum
+                # ask the player which enemy type they'd like to challenge
+                # spawn this enemy type then call fight with the enemy and gamestate
+                
                 # spawn enemy based on player stats/level, right now spawn a boss
                 enemy = game_state.get_random_enemy()
 
