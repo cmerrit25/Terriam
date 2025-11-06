@@ -433,3 +433,6 @@ class GameState:
             self.player.add_energy(1)
 
         return
+
+    def spawn_enemy(self, enemy) -> Small_Enemy | Large_Enemy | Miniboss | Boss:
+        return random.choice(self.enemies.get(enemy))
