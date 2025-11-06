@@ -36,11 +36,23 @@ def game():
             if user_choice == "fight" or user_choice == "f":
 
                 # tell the player that they have entered the colosseum
+                print(f"{game_state.player.name} has entered the colosseum")
                 # ask the player which enemy type they'd like to challenge
+                while True: 
+                    print("Please choose the enemy type you'd like to fight from the following choices:")
+                    enemy_choice = input("Small enemy, Large enemy, Mini-boss, or Boss?").lower()
+
+                    choices = ["small enemy", "large enemy", "mini-boss", "boss"]
+
+                    if enemy_choice not in choices:
+                        print("Incorrect choice...")
+                    else:
+                        enemy = game_state.spawn_enemy(enemy_choice)
+                        break
                 # spawn this enemy type then call fight with the enemy and gamestate
-                
+
                 # spawn enemy based on player stats/level, right now spawn a boss
-                enemy = game_state.get_random_enemy()
+                # enemy = game_state.get_random_enemy()
 
                 # fight returns whether player lost or won
                 player_win = fight(enemy, game_state)
