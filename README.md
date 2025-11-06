@@ -28,7 +28,7 @@ Combining the combat system of Pokemon with the exploration and power building/s
 - **Actions (`actions.py`)** 
 
 ### `fight()`
-- [ ] Decide what can be fought (miniboss or boss).  
+- [X] Decide what can be fought (miniboss or boss).  
 - [X] Implement basic combat:
   - Compare speed to determine who attacks first.  
   - Subtract armor from incoming attack damage.  
@@ -87,4 +87,4 @@ Combining the combat system of Pokemon with the exploration and power building/s
 
 - [ ] Plan future systems early (inventory, skills, quests).                          <------- DO THIS NEXT
 - [X] Use type hints                    
-- [ ] Document each new class or function as it’s added.
+- [X] Document each new class or function as it’s added.
