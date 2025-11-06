@@ -304,8 +304,23 @@ class Player:
         self.xp += xp_gained
         self.check_level_up()
         return
+    
+    def escape_energy(self, enemy: Boss | Miniboss | Large_Enemy | Small_Enemy) -> None:
 
-    # calc xp cost to lelel up
+        energy_costs = {
+            Boss: 5,
+            Miniboss: 3,
+            Large_Enemy: 2,
+            Small_Enemy: 1
+        }
+
+        for enemy_type, energy in energy_costs.items():
+            if isinstance(enemy, enemy_type):
+                self.energy -= energy
+                print(f"You used {energy} to escape this enemy.")
+                break
+
+    # calc xp cost to level up
     def calc_lvl_cost(self) -> int:
         return 10 * math.pow(2, self.level - 1)
     

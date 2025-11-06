@@ -51,13 +51,12 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState) -> None:
             while True:
                 if player_prompt not in ["yes", "no", "y", "n"]:
                     print("Please enter yes, y, no, or n to answer this prompt.")
-                    player_prompt = input()
-                else:
+                    player_prompt = input() 
                     break
             if player_prompt == "yes" or player_prompt == "y":
                 fight(enemy, gamestate) 
             else:
-                print("You used one energy to escape this enemy.")   
+                gamestate.player.escape_energy(enemy)
                 # can you different amounts of energy to escape different enemies 
                      
                                                           # <------ need to add other options here
