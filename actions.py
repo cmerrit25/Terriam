@@ -8,7 +8,7 @@ Need to implement player move selection.
 
 from utils import get_item, get_small_enemy, get_large_enemy, get_miniboss, get_boss
 import random
-from classes import GameState, Player, Boss, Miniboss
+from classes import GameState, Player, Boss, Miniboss, Small_Enemy, Large_Enemy, Slime, Ogre
 
 # defines possible findings on explore action
 def explore(gamestate: GameState) -> None:
@@ -22,7 +22,7 @@ def explore(gamestate: GameState) -> None:
     }
 
     # choosing a random object type
-    find_options = ["item", "small_enemy", "large_enemy", "miniboss", "boss"]
+    find_options = ["item", "enemy"]
     explore = random.randint(0, len(find_options) - 1)
 
     # object found 
@@ -45,15 +45,22 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState) -> None:
             else:
                 print(f"{item_found} was not equipped...")  
 
-        case "small_enemy":
-            pass
-        case "large_enemy":
-            pass
-        case "miniboss":
-            pass
-        case "boss":
-            pass                                          
-                                                                                    # <------ need to add other options here
+        case "enemy":
+            enemy = gamestate.get_random_enemy()   
+            player_prompt = input(f"You've encountered a {enemy}. Do you want to fight it?").lower()
+            while True:
+                if player_prompt not in ["yes", "no", "y", "n"]:
+                    print("Please enter yes, y, no, or n to answer this prompt.")
+                    player_prompt = input()
+                else:
+                    break
+            if player_prompt == "yes" or player_prompt == "y":
+                fight(enemy, gamestate) 
+            else:
+                print("You used one energy to escape this enemy.")   
+                # can you different amounts of energy to escape different enemies 
+                     
+                                                          # <------ need to add other options here
 # adjust player object on train action
 # rudimentary, need to insert minigame or something to reward on success with training xp
 def train(gamestate: GameState) -> None:
@@ -79,7 +86,7 @@ def train(gamestate: GameState) -> None:
         return
     
 # adjust player object on fight action, right now moves are random but should be selected by user
-def fight(enemy: Miniboss | Boss , gamestate: GameState) -> bool:
+def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameState) -> bool:
     # print enemy health
     print(f"{enemy.name}'s HP: {enemy.health}")
     # print player health

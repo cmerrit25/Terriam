@@ -36,6 +36,9 @@ class Slime(Small_Enemy):
         self.moves = {
             "Slap": self.attack * .4
         }
+
+    def __str__(self) -> None:
+        print(self.name)
     
 class Large_Enemy:
     def __init__(self):
@@ -62,6 +65,9 @@ class Ogre(Large_Enemy):
         self.moves = {
             "Stone Charge": self.attack * .4
         }
+
+    def __str__(self) -> None:
+        print(self.name)
     
 class Nemesis:
     def __init__(self, name: str):
