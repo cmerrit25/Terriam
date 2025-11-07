@@ -88,7 +88,6 @@ def train(gamestate: GameState) -> None:
 def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameState) -> bool:
     # print enemy health
    
-
     # player and enemy fight until one dies
     while True:
 

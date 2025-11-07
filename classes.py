@@ -455,21 +455,22 @@ class GameState:
     #         player_stats[stat] += stat
 
     def defeat_enemy(self, enemy: Boss | Miniboss | Large_Enemy | Small_Enemy) -> None:
-        if isinstance(enemy, Boss):
-            self.player.level_up(5)
-            self.player.add_energy(5)
-            self.bosses_defeated.append(enemy)
-        elif isinstance(enemy, Miniboss):
-            self.player.level_up(3)
-            self.player.add_energy(3)
-        elif isinstance(enemy, Large_Enemy):
-            self.player.level_up(2)
-            self.player.add_energy(2)
-        elif isinstance(enemy, Small_Enemy):
-            self.player.level_up(1)
-            self.player.add_energy(1)
+        match enemy:
+            case Boss():
+                self.player.level_up(5)
+                self.player.add_energy(5)
+                self.bosses_defeated.append(enemy)
+            case Miniboss():
+                self.player.level_up(3)
+                self.player.add_energy(3)
+            case Large_Enemy():
+                self.player.level_up(2)
+                self.player.add_energy(2)
+            case Small_Enemy():
+                self.player.level_up(1)
+                self.player.add_energy(1)
 
-        return
+        
 
     def spawn_enemy(self, enemy) -> Small_Enemy | Large_Enemy | Miniboss | Boss | Final_Boss:
         return random.choice(self.enemies.get(enemy))
