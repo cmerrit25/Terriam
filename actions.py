@@ -128,7 +128,7 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
             
             # evasion/dodge calc
             if gamestate.player.evasion > 0:                                                
-                ran_int = random.randint(0, gamestate.player.evasion)
+                ran_int = random.randint(0, 100)
                 if ran_int <= gamestate.player.evasion:
                     print(f"{gamestate.player.name} dodged {enemy_move}")
                 else:
@@ -140,7 +140,7 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
         else:
             # evasion/dodge calc
             if gamestate.player.evasion > 0:                                                # <----- condense this logic into a function maybe?
-                ran_int = random.randint(0, gamestate.player.evasion)
+                ran_int = random.randint(0, 100)
                 if ran_int <= gamestate.player.evasion:
                     print(f"{gamestate.player.name} dodged {enemy_move}")
                 else:
