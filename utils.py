@@ -1,4 +1,4 @@
-from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver, Slime, Ogre
+from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver, Slime, Ogre, Penetrator
 import random
 
 # grab player and nemesis objects
@@ -53,6 +53,10 @@ def spawn_enemies():
     slime = Slime()
     small_enemies = [slime]
     enemies["small_enemies"] = small_enemies
+
+    penetrator = Penetrator()
+    final_bosses = [penetrator]
+    enemies["final_bosses"] = final_bosses
     
     return colosuss, vrolux, sentry, reaver, enemies
 

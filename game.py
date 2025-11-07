@@ -42,7 +42,8 @@ def game():
 
                 if len(game_state.bosses_defeated) == 3:
                     print("You've defeated all the bosses. Time for the final boss...")
-                    final_boss = game_state.spawn_final_boss()
+                    # spawn final boss
+                    final_boss = game_state.spawn_enemy("final_bosses")
                     if fight(final_boss, game_state):
                         print("You've beat Terriam!")
                         break
@@ -84,5 +85,5 @@ def game():
 
             # print game state
             print(game_state)
-            
+
         break

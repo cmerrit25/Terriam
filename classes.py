@@ -95,6 +95,43 @@ class Nemesis:
         stats = f"{self.name}'s stats: Max HP - {self.health}, Attack - {self.attack}, Defense - {self.defense}, Speed - {self.speed}\n"
         return stats
 
+class Final_Boss:
+    def __init__(self):
+        self.health = 3000
+        self.armor = 300
+        self.speed = 300
+        self.attack = 600
+        
+    def take_damage(self, enemy, damage) -> None:
+        if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
+            damage /= 2
+        self.health -= damage
+        print(f"{enemy.name} dealt {damage} damage to {self.name}")
+        return
+
+    def get_move_damage(self) -> tuple[str, float]:
+        return random.choice(list(self.moves.items()))
+    
+class Penetrator(Final_Boss):
+    MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
+    def __init__(self):
+        super().__init__()
+        self.name = "The Penetrator"
+        self.health = int(self.health * self.MULT["health"])
+        self.armor  = int(self.armor * self.MULT["armor"])
+        self.speed  = int(self.speed * self.MULT["speed"])
+        self.attack = int(self.attack * self.MULT["attack"])
+
+        self.moves = {
+            "True Penetrator": self.attack * .3
+        }
+
+    def __str__(self) -> str:
+        return f"Penetrator HP: {self.health}"
+    
+    def get_move_damage(self) -> tuple[str, float]:
+        return random.choice(list(self.moves.items()))
+
 class Boss:
     
     def __init__(self):
@@ -434,5 +471,5 @@ class GameState:
 
         return
 
-    def spawn_enemy(self, enemy) -> Small_Enemy | Large_Enemy | Miniboss | Boss:
+    def spawn_enemy(self, enemy) -> Small_Enemy | Large_Enemy | Miniboss | Boss | Final_Boss:
         return random.choice(self.enemies.get(enemy))
