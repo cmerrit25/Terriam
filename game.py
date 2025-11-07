@@ -37,6 +37,15 @@ def game():
 
                 # tell the player that they have entered the colosseum
                 print(f"{game_state.player.name} has entered the colosseum")
+
+                # check if win con has been met
+
+                if len(game_state.bosses_defeated) == 3:
+                    print("You've defeated all the bosses. Time for the final boss...")
+                    final_boss = game_state.spawn_final_boss()
+                    if fight(final_boss, game_state):
+                        print("You've beat Terriam!")
+                        break
                 # ask the player which enemy type they'd like to challenge
                 while True: 
                     print("Please choose the enemy type you'd like to fight from the following choices:")
@@ -75,4 +84,5 @@ def game():
 
             # print game state
             print(game_state)
-
+            
+        break
