@@ -61,10 +61,6 @@ def game():
                         enemy = game_state.spawn_enemy(choice)
                         break
                 # spawn this enemy type then call fight with the enemy and gamestate
-
-                # spawn enemy based on player stats/level, right now spawn a boss
-                # enemy = game_state.get_random_enemy()
-
                 # fight returns whether player lost or won
                 player_win = fight(enemy, game_state)
 
@@ -87,3 +83,4 @@ def game():
             print(game_state)
 
         break
+ 

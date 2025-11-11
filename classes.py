@@ -11,12 +11,16 @@ Need to make sure that balancing feels good as well.
 import math, random
 from typing import Dict
 
+class Item:
+    pass
+
 class Small_Enemy:
     def __init__(self):
         self.health = 50
         self.armor = 5
         self.speed = 5
         self.attack = 10
+        self.pierce = 5
         
     def take_damage(self, enemy, damage) -> None:
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
@@ -46,6 +50,7 @@ class Large_Enemy:
         self.armor = 10
         self.speed = 10
         self.attack = 20
+        self.pierce = 10
 
     def take_damage(self, enemy, damage) -> None:
         if enemy.pierce < self.armor:
@@ -101,6 +106,7 @@ class Final_Boss:
         self.armor = 300
         self.speed = 300
         self.attack = 600
+        self.pierce = 150
         
     def take_damage(self, enemy, damage) -> None:
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
@@ -139,6 +145,7 @@ class Boss:
         self.armor = 100
         self.speed = 100
         self.attack = 200
+        self.pierce = 100
         
     def take_damage(self, enemy, damage) -> None:
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
@@ -204,6 +211,7 @@ class Miniboss():
         self.armor = 50
         self.speed = 50
         self.attack = 100
+        self.pierce = 50
 
     def take_damage(self, enemy, damage) -> None:
         if enemy.pierce < self.armor:                        # <-------------- determine how to fix inheritance to properly reference Player class functions
