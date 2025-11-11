@@ -279,7 +279,7 @@ class Player:
         self.level = 1
 
         self.moves = {
-            "palm strike": self.attack * .4
+            "palm strike": (self.attack * .4, 5, 5)
         }
 
         self.combat_power = self.attack + self.defense + self.speed + self.speed + self.health + self.evasion + self.pierce
@@ -326,7 +326,7 @@ class Player:
         moves = self.moves
         print(f"{self.name}'s moveset:\n")
         for key, value in moves.items():
-            print(f"{key}: {value} damage")
+            print(f"{key}: {value[0]} damage  {value[1]} PP")
         print("\n")
     
     # return a random move's damage from the list of player moves

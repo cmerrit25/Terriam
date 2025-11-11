@@ -114,10 +114,10 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
 
 
         player_move, player_damage = gamestate.player.get_move_damage(move_choice)
-
+        gamestate.player.use_move_pp(player_move)
         # grab enemy move name and damage
         enemy_move, enemy_damage = enemy.get_move_damage()
-
+        gamestate.player.use_move_pp(enemy_move)
         # the player hits and then enemy hits
         if gamestate.player.speed >= enemy.speed:
             enemy.take_damage(gamestate.player, player_damage)
