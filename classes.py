@@ -48,6 +48,16 @@ class Slime(Small_Enemy):
 
     def __str__(self) -> None:
         print(self.name)
+
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
     
 class Large_Enemy:
     def __init__(self):
@@ -83,6 +93,16 @@ class Ogre(Large_Enemy):
 
     def __str__(self) -> None:
         print(self.name)
+
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
     
 class Nemesis:
     def __init__(self, name: str):
@@ -157,6 +177,16 @@ class Penetrator(Final_Boss):
     
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
+    
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
 
 class Boss:
     
@@ -212,6 +242,16 @@ class Colossus(Boss):
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
+    
 
 
 class Vrolux(Boss):
@@ -234,6 +274,16 @@ class Vrolux(Boss):
     
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
+    
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
 
 class Miniboss():
     def __init__(self):
@@ -284,6 +334,16 @@ class Sentry(Miniboss):
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
+    
 class Reaver(Miniboss):
     MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
     def __init__(self):
@@ -304,6 +364,16 @@ class Reaver(Miniboss):
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
+    
 
 class Player:
     def __init__(self, name):
@@ -319,7 +389,7 @@ class Player:
         self.level = 1
 
         self.moves = {
-            "palm strike": (self.attack * .4, 5, 5)
+            "palm strike": [self.attack * .4, 5, 5]
         }
 
         self.combat_power = self.attack + self.defense + self.speed + self.speed + self.health + self.evasion + self.pierce
@@ -371,7 +441,7 @@ class Player:
     
     # return a random move's damage from the list of player moves
     def get_move_damage(self, move) -> tuple[str, float]:
-        return (move, self.moves[move])
+        return (move, self.moves[move][0])
     
     # add energy to player energy pool
     def add_energy(self, energy: int) -> None:
@@ -469,7 +539,7 @@ class Player:
         return
     
     def refresh_moves_pp(self) -> None:
-        for values in self.moves.items():
+        for values in self.moves.values():
             values[2] = values[1]
         return
 
