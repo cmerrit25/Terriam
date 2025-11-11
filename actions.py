@@ -122,6 +122,7 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
         if gamestate.player.speed >= enemy.speed:
             enemy.take_damage(gamestate.player, player_damage)
             if check_for_death(enemy):
+                gamestate.player.regain_health()
                 gamestate.defeat_enemy(enemy)
                 return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
             
@@ -148,6 +149,7 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
                         return False
             enemy.take_damage(gamestate.player, player_damage)
             if check_for_death(enemy):
+                gamestate.player.regain_health()
                 gamestate.defeat_enemy(enemy)
                 return True
 

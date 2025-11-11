@@ -318,6 +318,10 @@ class Player:
         lvl_data = f"The player is level {self.level} and needs {self.calc_lvl_cost()} to get to level {self.level + 1}!\n"
         return f"{stats}{lvl_data}"
     
+    def regain_health(self) -> None:
+        self.health = self.max_hp
+        return
+    
     def show_moves(self) -> None:
         moves = self.moves
         print(f"{self.name}'s moveset:\n")
@@ -374,7 +378,7 @@ class Player:
     def scale_stats(self) -> float:
         for attr in ("attack", "defense", "speed", "max_hp", "evasion", "pierce"):
             setattr(self, attr, int(getattr(self, attr) * 1.1))
-
+        self.regain_health()
         self.energy_max += 1
         self.energy = self.energy_max
         return
@@ -419,9 +423,7 @@ class Player:
             return True
         return False
     
-    def regain_health(self) -> None:
-        self.health = self.max_hp
-        return
+    
 
 
     
