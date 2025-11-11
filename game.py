@@ -19,7 +19,7 @@ def game():
         action_choices = ["fight", "explore", "train", "f", "e", "t"]
 
         # prompt the user for an action choice
-        action_msg = "Explore? Train? Fight mini-boss? Fight boss?\n"
+        action_msg = "Explore? Train? Fight?\n"
         user_choice = ""
         while True:
             try:
