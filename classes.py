@@ -31,6 +31,11 @@ class Small_Enemy:
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
+    
 class Slime(Small_Enemy):
     def __init__(self):
 
@@ -60,6 +65,11 @@ class Large_Enemy:
 
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
     
 class Ogre(Large_Enemy):
     def __init__(self):
@@ -123,6 +133,11 @@ class Final_Boss:
         move_pp -= 1
         return
     
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
+    
 class Penetrator(Final_Boss):
     MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
     def __init__(self):
@@ -165,6 +180,11 @@ class Boss:
     def use_move_pp(self, move) -> None:
         move_pp = self.moves.get(move)[2]
         move_pp -= 1
+        return
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
         return
 
 class Colossus(Boss):
@@ -236,6 +256,11 @@ class Miniboss():
     def use_move_pp(self, move) -> None:
         move_pp = self.moves.get(move)[2]
         move_pp -= 1
+        return
+    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
         return
 
 class Sentry(Miniboss):
@@ -443,10 +468,10 @@ class Player:
         move_pp -= 1
         return
     
-    
-
-
-    
+    def refresh_moves_pp(self) -> None:
+        for values in self.moves.items():
+            values[2] = values[1]
+        return
 
 # collection of current game instance information
 class GameState:
