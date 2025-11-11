@@ -398,6 +398,7 @@ class Player:
         for _ in range(levels):
             xp_needed = self.calc_lvl_cost()
             self.gain_xp(xp_needed)
+            print(f"{self.name} leveled up!")
         return
 
     def drain_energy(self) -> None:
