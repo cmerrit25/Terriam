@@ -118,6 +118,11 @@ class Final_Boss:
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
     
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
+    
 class Penetrator(Final_Boss):
     MULT = {"health": 1.0, "armor": .8, "speed": 2.5, "attack": 1.5}
     def __init__(self):
@@ -156,6 +161,11 @@ class Boss:
 
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
+    
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
 
 class Colossus(Boss):
 
@@ -222,6 +232,11 @@ class Miniboss():
 
     def get_move_damage(self) -> tuple[str, float]:
         return random.choice(list(self.moves.items()))
+    
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
 
 class Sentry(Miniboss):
     MULT = {"health": 2.0, "armor": 2.0, "speed": .5, "attack": 1.5}
@@ -422,6 +437,11 @@ class Player:
         if self.combat_power < other.combat_power:
             return True
         return False
+    
+    def use_move_pp(self, move) -> None:
+        move_pp = self.moves.get(move)[2]
+        move_pp -= 1
+        return
     
     
 
