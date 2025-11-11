@@ -268,11 +268,11 @@ class Reaver(Miniboss):
 class Player:
     def __init__(self, name):
         self.name = name
-       
+        self.max_hp= 75
+        self.health = 75
         self.attack = 25
         self.defense = 10
         self.speed = 15
-        self.health = 75
         self.evasion = 10
         self.pierce = 10
         self.xp = 0
@@ -372,7 +372,7 @@ class Player:
     
     # scale stats by 10 percent
     def scale_stats(self) -> float:
-        for attr in ("attack", "defense", "speed", "health", "evasion", "pierce"):
+        for attr in ("attack", "defense", "speed", "max_hp", "evasion", "pierce"):
             setattr(self, attr, int(getattr(self, attr) * 1.1))
 
         self.energy_max += 1
@@ -398,7 +398,6 @@ class Player:
         for _ in range(levels):
             xp_needed = self.calc_lvl_cost()
             self.gain_xp(xp_needed)
-            print(f"{self.name} leveled up!")
         return
 
     def drain_energy(self) -> None:
@@ -419,6 +418,10 @@ class Player:
         if self.combat_power < other.combat_power:
             return True
         return False
+    
+    def regain_health(self) -> None:
+        self.health = self.max_hp
+        return
 
 
     
