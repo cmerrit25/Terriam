@@ -389,7 +389,7 @@ class Player:
         self.level = 1
 
         self.moves = {
-            "palm strike": [self.attack * .4, 5, 5]
+            "palm strike": {"mult": .4, "max_pp": 5, "pp": 5}
         }
 
         self.combat_power = self.attack + self.defense + self.speed + self.speed + self.health + self.evasion + self.pierce
@@ -433,15 +433,16 @@ class Player:
         return
     
     def show_moves(self) -> None:
-        moves = self.moves
         print(f"{self.name}'s moveset:\n")
-        for key, value in moves.items():
-            print(f"{key}: {value[0]} damage  {value[1]} PP")
+        for name, m in self.moves.items():
+            damage = int(self.attack * m["mult"])
+            print(f"{name}: {damage} damage  {m["pp"]}/{m["max_pp"]} PP")
         print("\n")
     
     # return a random move's damage from the list of player moves
     def get_move_damage(self, move) -> tuple[str, float]:
-        return (move, self.moves[move][0])
+        m = self.moves[move]
+        return (move, self.attack * m["mult"])
     
     # add energy to player energy pool
     def add_energy(self, energy: int) -> None:
@@ -464,6 +465,12 @@ class Player:
         self.xp += xp_gained
         self.check_level_up()
         return
+    
+    # def set_move_damage(self) -> None:
+    #     for value in self.moves.values():
+    #         for value in value.values():
+    #             value[0] = value[0]
+    #     return
     
     def escape_energy(self, enemy: Boss | Miniboss | Large_Enemy | Small_Enemy) -> None:
 
@@ -489,6 +496,7 @@ class Player:
         for attr in ("attack", "defense", "speed", "max_hp", "evasion", "pierce"):
             setattr(self, attr, int(getattr(self, attr) * 1.1))
         self.regain_health()
+        self.set_move_damage()
         self.energy_max += 1
         self.energy = self.energy_max
         return
@@ -534,13 +542,13 @@ class Player:
         return False
     
     def use_move_pp(self, move) -> None:
-        move_pp = self.moves.get(move)[2]
+        move_pp = self.moves.get(move)["pp"]
         move_pp -= 1
         return
     
     def refresh_moves_pp(self) -> None:
-        for values in self.moves.values():
-            values[2] = values[1]
+        for m in self.moves.values():
+            m["pp"] = m["max_pp"]
         return
 
 # collection of current game instance information
