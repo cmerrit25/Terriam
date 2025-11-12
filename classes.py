@@ -436,7 +436,7 @@ class Player:
         print(f"{self.name}'s moveset:\n")
         for name, m in self.moves.items():
             damage = int(self.attack * m["mult"])
-            print(f"{name}: {damage} damage  {m["pp"]}/{m["max_pp"]} PP")
+            print(f"{name}: {damage} damage  {m['pp']}/{m['max_pp']} PP")
         print("\n")
     
     # return a random move's damage from the list of player moves
@@ -496,7 +496,6 @@ class Player:
         for attr in ("attack", "defense", "speed", "max_hp", "evasion", "pierce"):
             setattr(self, attr, int(getattr(self, attr) * 1.1))
         self.regain_health()
-        self.set_move_damage()
         self.energy_max += 1
         self.energy = self.energy_max
         return
