@@ -436,14 +436,14 @@ class Player:
         print(f"{self.name}'s moveset:\n")
         for name, m in self.moves.items():
             precalc_dmg = self.attack * m["mult"]
-            damage = math.ceil(precalc_dmg)
+            damage = round(precalc_dmg)
             print(f"{name}: {damage} damage  {m['pp']}/{m['max_pp']} PP")
         print("\n")
     
     # return a random move's damage from the list of player moves
     def get_move_damage(self, move) -> tuple[str, float]:
         m = self.moves[move]
-        return (move, math.ceil(self.attack * m["mult"]))
+        return (move, round(self.attack * m["mult"]))
     
     # add energy to player energy pool
     def add_energy(self, energy: int) -> None:
