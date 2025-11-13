@@ -22,7 +22,7 @@ def explore(gamestate: GameState) -> None:
     }
 
     # choosing a random object type
-    find_options = ["item", "enemy"]
+    find_options = ["item", "small_enemy", "large_enemy", "miniboss", "boss"]
     explore = random.randint(0, len(find_options) - 1)
 
     # object found 
@@ -45,7 +45,7 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState) -> None:
             else:
                 print(f"{item_found} was not equipped...")  
 
-        case "enemy":
+        case "small_enemy" | "large_enemy" | "miniboss" | "boss":
             enemy = gamestate.get_random_enemy()   
             player_prompt = input(f"You've encountered a {enemy}. Do you want to fight it?").lower()
             while True:

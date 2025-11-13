@@ -64,6 +64,17 @@ def spawn_enemies():
 def get_item():
     pass
 
+def get_enemy(enemy_type):
+    match enemy_type:
+        case "small_enemy":
+            return get_small_enemy()
+        case "large_enemy":
+            return get_large_enemy()
+        case "miniboss":
+            return get_miniboss()
+        case "boss":
+            return get_boss()
+        
 # spawn small enemy
 def get_small_enemy():
     return Slime()
@@ -90,6 +101,6 @@ items = {
     "Excalibur": {"attack": 1000}
 }
 
-def get_item(items):
-    item_name, item_stats = random.choice(list(items.items))
+def get_item():
+    item_name, item_stats = random.choice(list(items.items()))
     return item_name, item_stats
