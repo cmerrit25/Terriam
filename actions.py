@@ -125,7 +125,6 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
         # the player hits and then enemy hits
         if gamestate.player.speed >= enemy.speed:
             enemy.take_damage(gamestate.player, player_damage)
-            gamestate.player.use_move_pp(player_move)
             if check_for_death(enemy):
                 gamestate.player.regain_health()
                 gamestate.player.refresh_moves_pp()
