@@ -541,10 +541,12 @@ class Player:
             return True
         return False
     
-    def use_move_pp(self, move) -> None:
-        move_pp = self.moves.get(move)["pp"]
-        move_pp -= 1
-        return
+    def use_move_pp(self, move) -> bool:
+        m= self.moves.get(move)
+        if m["pp"] <= 0:
+            return False
+        m["pp"] -= 1
+        return True
     
     def refresh_moves_pp(self) -> None:
         for m in self.moves.values():
