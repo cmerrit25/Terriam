@@ -22,7 +22,8 @@ def explore(gamestate: GameState) -> None:
     }
 
     # choosing a random object type
-    find_options = ["item", "small_enemy", "large_enemy", "miniboss", "boss"]
+    #find_options = ["item", "small_enemy", "large_enemy", "miniboss", "boss"]
+    find_options = ["item"]
     explore = random.randint(0, len(find_options) - 1)
 
     # object found 
@@ -43,7 +44,7 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState, item_stats=Non
             choice = input(f"Do you want to keep and equip {item_found}?\n").lower()
             if choice == "yes" or "y":
                 # need to implement items class
-                gamestate.equip_item(item_found, item_stats)
+                gamestate.equip_item(item_stats)
                 
             else:
                 print(f"{item_found} was not equipped...")  

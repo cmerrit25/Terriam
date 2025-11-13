@@ -586,9 +586,8 @@ class GameState:
     
     # adjust player stats from item equip
     def equip_item(self, item_stats):
-        player_stats = self.player.get_stats()
         for stat, upgrade in item_stats.items():
-            player_stats[stat] += upgrade
+            setattr(self.player, stat, getattr(self.player, stat) + upgrade)
 
     def defeat_enemy(self, enemy: Boss | Miniboss | Large_Enemy | Small_Enemy) -> None:
         match enemy:
