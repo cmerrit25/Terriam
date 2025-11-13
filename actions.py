@@ -50,6 +50,7 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState, item_stats=Non
 
         case "small_enemy" | "large_enemy" | "miniboss" | "boss":
             enemy = get_enemy(item_type) 
+            print(item_type)
             player_prompt = input(f"You've encountered a {enemy}. Do you want to fight it?").lower()
             while True:
                 if player_prompt not in ["yes", "no", "y", "n"]:

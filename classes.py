@@ -46,8 +46,8 @@ class Slime(Small_Enemy):
             "Slap": self.attack * .4
         }
 
-    def __str__(self) -> None:
-        print(self.name)
+    def __str__(self) -> str:
+        return self.name
 
     def use_move_pp(self, move) -> None:
         move_pp = self.moves.get(move)[2]
@@ -91,8 +91,8 @@ class Ogre(Large_Enemy):
             "Stone Charge": self.attack * .4
         }
 
-    def __str__(self) -> None:
-        print(self.name)
+    def __str__(self) -> str:
+        return self.name
 
     def use_move_pp(self, move) -> None:
         move_pp = self.moves.get(move)[2]
