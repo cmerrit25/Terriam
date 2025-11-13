@@ -50,7 +50,6 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState, item_stats=Non
 
         case "small_enemy" | "large_enemy" | "miniboss" | "boss":
             enemy = get_enemy(item_type) 
-            print(item_type)
             player_prompt = input(f"You've encountered a {enemy}. Do you want to fight it?").lower()
             while True:
                 if player_prompt not in ["yes", "no", "y", "n"]:
@@ -125,6 +124,7 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
         # the player hits and then enemy hits
         if gamestate.player.speed >= enemy.speed:
             enemy.take_damage(gamestate.player, player_damage)
+            gamestate.player.use_move_pp(player_move)
             if check_for_death(enemy):
                 gamestate.player.regain_health()
                 gamestate.player.refresh_moves_pp()
@@ -153,6 +153,7 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
                     if check_for_death(gamestate.player):
                         return False
             enemy.take_damage(gamestate.player, player_damage)
+            gamestate.player.use_move_pp(player_move)
             if check_for_death(enemy):
                 gamestate.player.regain_health()
                 gamestate.player.refresh_moves_pp()
