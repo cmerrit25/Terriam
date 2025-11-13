@@ -85,3 +85,11 @@ def get_boss():
     if ran_int:
         return Colossus()
     return Vrolux()
+
+items = {
+    "Excalibur": {"attack": 1000}
+}
+
+def get_item(items):
+    item_name, item_stats = random.choice(list(items.items))
+    return item_name, item_stats
