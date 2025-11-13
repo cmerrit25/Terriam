@@ -6,7 +6,7 @@ Need to implement player move selection.
 """
 
 
-from utils import get_item, get_small_enemy, get_large_enemy, get_miniboss, get_boss
+from utils import get_item, get_small_enemy, get_large_enemy, get_miniboss, get_boss, get_enemy
 import random
 from classes import GameState, Player, Boss, Miniboss, Small_Enemy, Large_Enemy, Slime, Ogre
 
@@ -26,33 +26,36 @@ def explore(gamestate: GameState) -> None:
     explore = random.randint(0, len(find_options) - 1)
 
     # object found 
-    found = findings[find_options[explore]]
+    if find_options[explore] == "item":
+        item_name, item_stats = findings[find_options[explore]]
+        plyr_choice(item_name, find_options[explore], gamestate, item_stats)
+    else:
+        found = findings[find_options[explore]]
 
-    # prompting player if they want to interact with the found object
-    plyr_choice(found, find_options[explore], gamestate)
+        # prompting player if they want to interact with the found object
+        plyr_choice(found, find_options[explore], gamestate)
 
 # adjust player object on item find
-def plyr_choice(item_found, item_type: str, gamestate: GameState) -> None:
+def plyr_choice(item_found, item_type: str, gamestate: GameState, item_stats=None) -> None:
     match item_type:
         case "item":
             print(f"{item_found} was found!\n")
-            print(item_found)
             choice = input(f"Do you want to keep and equip {item_found}?\n").lower()
             if choice == "yes" or "y":
                 # need to implement items class
-                # gamestate.equip_item(item_found)
-                pass
+                gamestate.equip_item(item_found, item_stats)
+                
             else:
                 print(f"{item_found} was not equipped...")  
 
         case "small_enemy" | "large_enemy" | "miniboss" | "boss":
-            enemy = gamestate.get_random_enemy()   
+            enemy = get_enemy(item_type) 
             player_prompt = input(f"You've encountered a {enemy}. Do you want to fight it?").lower()
             while True:
                 if player_prompt not in ["yes", "no", "y", "n"]:
                     print("Please enter yes, y, no, or n to answer this prompt.")
                     player_prompt = input() 
-                    break
+                break
             if player_prompt == "yes" or player_prompt == "y":
                 fight(enemy, gamestate) 
             else:
