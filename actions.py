@@ -23,7 +23,7 @@ def explore(gamestate: GameState) -> None:
 
     # choosing a random object type
     #find_options = ["item", "small_enemy", "large_enemy", "miniboss", "boss"]
-    find_options = ["item"]
+    find_options = ["item", "enemy"]
     explore = random.randint(0, len(find_options) - 1)
 
     # object found 
