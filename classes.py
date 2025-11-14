@@ -11,6 +11,7 @@ Need to make sure that balancing feels good as well.
 import math, random
 from typing import Dict
 
+
 class Item:
     pass
 
@@ -398,6 +399,8 @@ class Player:
 
         self.energy = 3
         self.energy_max = 3
+
+        self.player_inventory = set()
     # getter for player name
     @property
     def name(self) -> str:
@@ -587,9 +590,11 @@ class GameState:
         return enemy
     
     # adjust player stats from item equip
-    def equip_item(self, item_stats):
+    def equip_item(self, item_name, item_stats):
         for stat, upgrade in item_stats.items():
             setattr(self.player, stat, getattr(self.player, stat) + upgrade)
+
+        self.player.player_inventory.add(item_name)
 
     def defeat_enemy(self, enemy: Boss | Miniboss | Large_Enemy | Small_Enemy) -> None:
         match enemy:
@@ -611,3 +616,8 @@ class GameState:
 
     def spawn_enemy(self, enemy) -> Small_Enemy | Large_Enemy | Miniboss | Boss | Final_Boss:
         return random.choice(self.enemies.get(enemy))
+    
+    
+
+        
+

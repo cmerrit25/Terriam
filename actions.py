@@ -6,7 +6,7 @@ Need to implement player move selection.
 """
 
 
-from utils import get_item, get_small_enemy, get_large_enemy, get_miniboss, get_boss, get_enemy
+from utils import find_item, get_item, get_small_enemy, get_large_enemy, get_miniboss, get_boss, get_enemy
 import random
 from classes import GameState, Player, Boss, Miniboss, Small_Enemy, Large_Enemy, Slime, Ogre
 
@@ -14,7 +14,7 @@ from classes import GameState, Player, Boss, Miniboss, Small_Enemy, Large_Enemy,
 def explore(gamestate: GameState) -> None:
     # possible things to find on explore
     findings = {
-        "item": get_item(),
+        "item": find_item(gamestate),
         "small_enemy": get_small_enemy(),
         "large_enemy": get_large_enemy(),
         "miniboss": get_miniboss(),
@@ -28,7 +28,11 @@ def explore(gamestate: GameState) -> None:
 
     # object found 
     if find_options[explore] == "item":
-        item_name, item_stats = findings[find_options[explore]]
+        if findings[find_options[explore]] == None:
+            print(f"{gamestate.player.name} has found and equipped all available items...")
+            return
+        item_name = findings[find_options[explore]]
+        item_stats = get_item(item_name)
         plyr_choice(item_name, find_options[explore], gamestate, item_stats)
     else:
         found = findings[find_options[explore]]
@@ -44,7 +48,8 @@ def plyr_choice(item_found, item_type: str, gamestate: GameState, item_stats=Non
             choice = input(f"Do you want to keep and equip {item_found}?\n").lower()
             if choice == "yes" or "y":
                 # need to implement items class
-                gamestate.equip_item(item_stats)
+                gamestate.equip_item(item_found, item_stats)
+                
                 
             else:
                 print(f"{item_found} was not equipped...")  

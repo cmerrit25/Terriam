@@ -1,6 +1,6 @@
-from classes import Player, Nemesis, Colossus, Vrolux, Sentry, Reaver, Slime, Ogre, Penetrator
+from classes import Player, GameState, Nemesis, Colossus, Vrolux, Sentry, Reaver, Slime, Ogre, Penetrator
 import random
-
+from typing import Dict
 # grab player and nemesis objects
 def get_player_nemesis():
     start_msg = "Welcome to Terriam, a world of wonder and randomness inspired by the peakness of Terraria and Pokemon!\n"
@@ -98,9 +98,20 @@ def get_boss():
     return Vrolux()
 
 items = {
-    "Excalibur": {"attack": 1000}
+    "Excalibur": {"attack": 10000},
+    "Heathcliff's Liberator": {"defense": 1000}
 }
 
-def get_item():
-    item_name, item_stats = random.choice(list(items.items()))
-    return item_name, item_stats
+def get_item(item_name):
+    item_stats = items[item_name]
+    return item_stats
+
+def find_item(gamestate: GameState) -> Dict | None:
+    available_items = [item for item in items.keys() if item not in gamestate.player.player_inventory]
+
+    if not available_items:
+        return None
+    
+    found_item = random.choice(available_items)
+
+    return found_item
