@@ -116,6 +116,17 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
             if move_choice not in gamestate.player.moves.keys():    
 
                 print("That's not a valid move choice. Please choose again...\n")
+
+            elif gamestate.player.moves.get(move_choice).get("pp") == 0:
+                print("You've run out of PP for that move...\n")
+                
+                user_prompt = input("Do you want to continue to fight or flee?")
+
+                if user_prompt == "fight":
+                    continue
+                else:
+                    return False, True
+
             
             else:
                 break
@@ -134,7 +145,7 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
                 gamestate.player.regain_health()
                 gamestate.player.refresh_moves_pp()
                 gamestate.defeat_enemy(enemy)
-                return True                             # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
+                return True, False                      # return is checking for enemy death here. need to fix to more clearly show logic of winning/losing
             
             # evasion/dodge calc
             if gamestate.player.evasion > 0:                                                
@@ -144,7 +155,7 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
                 else:
                     gamestate.player.take_damage(enemy, enemy_damage)
                     if check_for_death(gamestate.player):
-                        return False
+                        return False, False
                     
         # the enemy hits and then the player hits
         else:
@@ -156,14 +167,14 @@ def fight(enemy: Miniboss | Boss | Small_Enemy | Large_Enemy, gamestate: GameSta
                 else:
                     gamestate.player.take_damage(enemy, enemy_damage)
                     if check_for_death(gamestate.player):
-                        return False
+                        return False, False
             enemy.take_damage(gamestate.player, player_damage)
             gamestate.player.use_move_pp(player_move)
             if check_for_death(enemy):
                 gamestate.player.regain_health()
                 gamestate.player.refresh_moves_pp()
                 gamestate.defeat_enemy(enemy)
-                return True
+                return True, False
 
 # checking for full hp loss of a person/enemy
 def check_for_death(entity: Player | Miniboss | Boss) -> bool:

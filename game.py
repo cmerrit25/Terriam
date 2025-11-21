@@ -62,12 +62,16 @@ def game():
                         break
                 # spawn this enemy type then call fight with the enemy and gamestate
                 # fight returns whether player lost or won
-                player_win = fight(enemy, game_state)
+                player_win, escape = fight(enemy, game_state)
 
                 # break if player lost
                 if not player_win:
-                    print(f"The player lost to {enemy.name}\n")
-                    break
+                    if not escape:
+                        print(f"The player lost to {enemy.name}\n")
+                        break
+                    else:
+                        print(f"The player fleed the battle...")
+                        continue
                 else:
                     print(f"The player defeated {enemy.name}\n")
 

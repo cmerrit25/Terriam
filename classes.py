@@ -17,7 +17,7 @@ class Item:
 
 class Small_Enemy:
     def __init__(self):
-        self.health = 50
+        self.health = 60
         self.armor = 5
         self.speed = 5
         self.attack = 10
