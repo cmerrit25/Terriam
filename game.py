@@ -70,7 +70,7 @@ def game():
                         print(f"The player lost to {enemy.name}\n")
                         break
                     else:
-                        print(f"The player fleed the battle...")
+                        print(f"The player fled the battle...")
                         continue
                 else:
                     print(f"The player defeated {enemy.name}\n")
